@@ -1,0 +1,44 @@
+@use "sass:math";
+@use "vars" as *;
+
+.yo-group{
+
+  display:flex;
+  flex-wrap:wrap;
+}
+.yo-cell{
+  display:flex;
+  padding-bottom: .6em;
+  ._cell-label{
+    display:inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: $yo-cell-label-w;
+    padding-right:1em;
+    ._important{
+      color: var(--color-error);
+      vertical-align: middle;
+      margin-right: .5em;
+    }
+  }
+  ._cell-value{
+    @include Flex-1();
+    display:inline-flex;
+    align-items: center;
+  }
+  &.__noLabel{
+    padding-left: 1em;
+  }
+}
+
+@for $i from 1 through $yo-group-grow-count {
+  .yo-group-grid-#{$i}{
+    $base: math.div(math.round(math.div(99.99%,$i) *100),100);
+    @for $j from 1 through $yo-cell-grow-count{
+      .yo-cell-span-#{$j}{
+        $size: $j * $base;
+        flex-basis: if($size> 100% , 99.99%, $size);
+      }
+    }
+  }
+}

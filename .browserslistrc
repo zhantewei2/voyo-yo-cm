@@ -1,0 +1,4 @@
+[development]
+IOS>=13
+[production]
+IOS>=13

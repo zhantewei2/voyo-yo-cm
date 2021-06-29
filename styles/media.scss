@@ -1,0 +1,13 @@
+@use "vars" as *;
+
+@mixin RootFontSize($mediaK){
+  html{
+    --size-font: #{map-get($media-font-size,$mediaK)};
+  }
+}
+
+@each $k,$v in $medias{
+  @media #{$v} {
+    @include RootFontSize($k);
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@ams-micro/main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "webpack --config src/webpack.yo.js",
+    "build:declare": "webpack --config src/webpack.yo.js --env declare=1"
+  },
+  "sideEffects": [
+    "**/*.scss",
+    "**/*.css",
+    "**/element.ts"
+  ],
+  "author": "",
+  "dependencies": {
+    "@voyo/core": "0.0.1-alpha.6",
+    "@voyo/core-style": "^2.0.0",
+    "vue": "^2.6.14",
+    "vue-property-decorator": "^8.5.1",
+    "vuex": "^3.6.2",
+    "marked": "^2.1.2",
+    "rxjs": "^6.6.7",
+    "@ztwx/utils": "^1.5.4",
+    "sass": "^1.35.1"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@types/resize-observer-browser": "^0.1.5",
+    "@voyom/core": "github:zhantewei2/voyom-core#vue2",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "ceaser-easing": "^1.0.1",
+    "core-js": "^3.15.2",
+    "resolve-url-loader": "^4.0.0",
+    "tslib": "^2.3.0",
+    "webpack-bundle-analyzer": "^4.4.2"
+  }
+}

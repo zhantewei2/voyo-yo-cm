@@ -1,0 +1,42 @@
+@import "~ceaser-easing";
+
+.yo-an-fadein-enter{
+  opacity:0;
+}
+.yo-an-fadein-leave-to{
+  opacity:0;
+}
+.yo-an-fadein-active{
+  transition: all .3s ease-out;
+}
+
+.yo-an-tooltip-enter{
+  opacity:0;
+  transform: scale(.3);
+}
+.yo-an-tooltip-leave-to{
+  opacity:0;
+  transform: scale(.8)
+}
+.yo-an-tooltip-active{
+  transition:all .15s ease-out;
+}
+
+.yo-an-tab-leave-active{
+  transition:all .3s $easeInOutQuad;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+}
+.yo-an-tab-enter-active{
+  transition: transform .3s $easeInOutQuad;
+}
+
+.yo-an-tab-right{
+  transform: translate3d(100%,0,0);
+}
+
+.yo-an-tab-left{
+  transform: translate3d(-100%,0,0);
+}

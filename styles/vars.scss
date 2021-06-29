@@ -1,0 +1,83 @@
+@use "sass:list";
+@forward "~@voyo/core-style/lib/components-dep";
+@use "~@voyo/core-style/lib/vars" as *;
+
+$border-color:#b5b5b5 !default;
+
+$yo-cell-basis: 33.33% !default;
+$yo-cell-grow-count: 4;
+$yo-group-grow-count:5;
+$yo-cell-min-width:200px;
+$yo-cell-label-w: 7.5em; //label 宽
+
+//media
+$media-mobile:"screen and (max-width: 799px)" !default;
+$media-pc: "screen and (min-width:800px)" !default;
+
+$media-pc-large: "screen and (min-width: 1900px)" !default;
+$media-pc-strong: "screen and (min-width:1600px) and (max-width:1899px)" !default;
+$media-pc-medium: "screen and (max-width:1599px) and (min-width:1150px)" !default;
+$media-pc-small: "screen and (max-width:1149px) and (min-width:900px)" !default;
+$media-pc-mini:  "screen and (max-width:899px) and (min-width:800px)" !default;
+
+
+$medias:(
+  large:$media-pc-large,
+  strong:$media-pc-strong,
+  medium:$media-pc-medium,
+  small:$media-pc-small,
+  mini:$media-pc-mini,
+  mobile:$media-mobile
+) !default;
+
+// 各screen 下 html font-size大小
+$media-font-size:(
+  large: 15px,
+  strong:14px,
+  medium:13px,
+  small:12px,
+  mini:12px,
+  mobile:12px
+) !default;
+
+$z-index:(
+  dialogBg: 999,
+  tooltip: 10001
+) !default;
+
+$yo-colors:$color-various !default;
+
+// card
+$yo-card-title-height:2 !default;
+$yo-card-padding:.5rem 0 1.5rem 0 !default;
+$yo-card-header-padding:0 0 .5rem 0 !default;
+$yo-card-main-padding:.5rem 0 .5rem 0 !default;
+$yo-card-footer-padding: 1rem 0 0 0 !default;
+//modal
+$yo-modal-radius:10px;
+$yo-modal-bg-bg: var(--color-bg-deep3);
+$yo-modal-dialog-bg: var(--color-bg);
+$yo-modal-footer-bg: var(--color-bg2);
+$yo-modal-card-size-name:small now large;
+$yo-modal-card-size-width: 50vw 65vw 75vw;
+$yo-modal-card-size-max-width: 600px 750px 900px;
+$yo-modal-card-size: list.zip($yo-modal-card-size-name,$yo-modal-card-size-width,$yo-modal-card-size-max-width);
+
+//tooltip
+$yo-tooltip-padding:.6rem;
+
+//tabbar
+$yo-tabbar-item-padding: 1em 1em 1em 1em;
+$yo-tabbar-item-min-w: 5em;
+$yo-tabbar-thumb-color: var(--color-secondary);
+$yo-tabbar-item-color: var(--color-secondary);
+$yo-tabbar-colors: $yo-colors !default;
+
+//md
+$yo-md-gray-color:var(--color-bg3);
+$yo-md-table-border-color: var(--color-gentle-light);
+$yo-md-table-content-color: var(--color-font-content);
+$yo-md-code-bg-color: var(--color-gentle-gentle);
+$yo-md-quote-bg-color: var(--color-primary2-gentle);
+$yo-md-quote-border-color: var(--color-primary2-light);
+

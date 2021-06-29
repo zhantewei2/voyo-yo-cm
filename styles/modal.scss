@@ -1,0 +1,157 @@
+@use "vars" as *;
+@use "sass:list";
+
+.dialog-card{
+  position: fixed;
+  & > header {
+    height: 3.2em;
+    line-height: 3.2em;
+    padding: 0 1rem;
+    position: relative;
+    @include AfterBorder();
+    font-size: 1.3rem;
+    color: var(--color-font-title);
+    user-select: none;
+  }
+  ._content-wrapper {
+    & > main {
+      padding: 1rem;
+      color: var(--color-font-content);
+      @include IOSScroll();
+      overscroll-behavior-y: none;
+      overflow-y: auto;
+    }
+    & > footer {
+      position: relative;
+      background: $yo-modal-footer-bg;
+      padding: 0.8rem 1.2rem;
+      text-align: right;
+      @include AfterBorder(top);
+    }
+  }
+}
+.yo-dialog-card {
+  @extend .dialog-card !optional;
+  top: 50%;
+  left: 50%;
+  @include Radius(10px);
+  //backdrop-filter: blur(10px);
+  background: $yo-modal-dialog-bg;
+  transform: translate3d(-50%, -50%, 0);
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  //transition: transform 0.3s ease-out;
+  transform-origin: 50% 50%;
+  width: 75vw;
+  max-width: 1100px;
+  @each $sizes in $yo-modal-card-size {
+    &.__dialog-size-#{list.nth($sizes,1)} {
+      width: list.nth($sizes, 2);
+      max-width: list.nth($sizes, 3);
+    }
+  }
+  min-width: 360px;
+  box-shadow: 1px 16px 36px -6px rgba(black, 0.4);
+  border: 1px solid $border-color;
+  ._content-wrapper {
+    overflow: hidden;
+    @if $use-radius {
+      border-radius: 0 0 $yo-modal-radius $yo-modal-radius;
+    }
+    & > main {
+      min-height: 80px;
+      max-height: 70vh;
+    }
+  }
+}
+
+.yo-dialog-card-mobile {
+  @extend .dialog-card !optional;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $yo-modal-dialog-bg;
+  display: flex;
+  flex-flow: column;
+  transform: translate3d(0,0,0) !important;
+  ._content-wrapper {
+    @include Flex-1();
+    display: flex;
+    flex-flow: column;
+    & > main {
+      @include Flex-1();
+    }
+  }
+}
+
+.yo-dialog-an-card-enter{
+  opacity: 0;
+  transform: translate3d(-50%, -70%, 0);
+}
+.yo-dialog-an-card-active{
+  transition: all .3s ease-out;
+}
+.yo-dialog-an-card-leave{
+  opacity:0;
+}
+
+
+%modal-close-btn {
+  @include BtnBase();
+  @include ICenter();
+  @include Transition();
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--color-border-light);
+}
+.yo-modal-close-btn0 {
+  @extend %modal-close-btn !optional;
+  background: var(--color-after-border);
+  margin-right: 0.5rem;
+}
+.yo-modal-close-btn {
+  @extend %modal-close-btn !optional;
+  background: var(--color-secondary);
+  img {
+    opacity: 0;
+    @include Transition();
+    height: 1rem;
+    transform-origin: 50% 50%;
+  }
+  &:hover {
+    img {
+      transform: scale(1) rotate(180deg);
+    }
+  }
+  &:active {
+    transform: scale(0.8);
+  }
+}
+.yo-modal-close-container {
+  &:hover {
+    .yo-modal-close-btn {
+      img {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.yo-dialog-back-btn {
+  img {
+    height: 1em;
+  }
+  margin-right: 2rem;
+}
+
+.yo-dialog-bg{
+  z-index : map-get($z-index,dialogBg);
+  position:fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  background: $yo-modal-bg-bg;
+}

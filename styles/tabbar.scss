@@ -1,0 +1,42 @@
+@use "vars" as *;
+@import "~ceaser-easing";
+.yo-tabbar-container{
+  white-space: nowrap;
+  overflow-x:hidden;
+  position:relative;
+}
+.yo-tabbar-item{
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  padding: $yo-tabbar-item-padding;
+  min-width: $yo-tabbar-item-min-w;
+  user-select: none;
+  cursor:pointer;
+  @include Transition($type:comfort-in);
+}
+.yo-tabbar-thumb{
+  position:absolute;
+  bottom:0px;
+  height:3px;
+  border-radius:2px;
+
+  transition: all .3s $easeOutBack;
+  z-index:10;
+}
+
+@each $k,$v in $yo-tabbar-colors{
+  .yo-tabbar-container.__color-#{$k}{
+    .yo-tabbar-item{
+      &.__active{
+        color:$v;
+      }
+      &:hover{
+        background:var(--color-bg3)
+      }
+    }
+    .yo-tabbar-thumb{
+      background:$v;
+    }
+  }
+}

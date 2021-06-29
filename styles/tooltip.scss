@@ -1,0 +1,21 @@
+@use "vars" as *;
+.yo-tooltip-container{
+  position:absolute;
+  z-index: map-get($z-index,tooltip);
+  background: rgba(black,.6);
+  color:var(--color-font-title-reverse);
+  padding: $yo-tooltip-padding;
+  @include Radius();
+  &.__top{
+    transform-origin:50% 100%;
+  }
+  &.__left{
+    transform-origin:100% 50%;
+  }
+  &.__bottom{
+    transform-origin:50% 0;
+  }
+  &.__right{
+    transform-origin:0 50%;
+  }
+}

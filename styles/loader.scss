@@ -1,0 +1,21 @@
+@use "vars" as *;
+
+.yo-loader-block-container{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:10;
+  bottom: 0;
+  right: 0;
+  @include Center();
+  @supports (backdrop-filter: blur(5px)) {
+    backdrop-filter: blur(5px);
+  }
+  @supports not (backdrop-filter: blur(5px)) {
+    background: var(--color-bg-deep3);
+  }
+  img{
+    width:4rem;
+    height:4rem;
+  }
+}
