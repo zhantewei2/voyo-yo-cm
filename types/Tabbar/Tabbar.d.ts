@@ -12,7 +12,7 @@ export declare const Tabbar: {
             type: NumberConstructor;
         };
         color: {
-            default: import("../interface").YoColors;
+            default: import("..").YoColors;
             type: StringConstructor;
         };
         bottomBorder: {

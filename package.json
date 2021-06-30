@@ -1,30 +1,26 @@
 {
-  "name": "@ams-micro/main",
-  "version": "1.0.0",
+  "name": "@voyo/yo-cm",
+  "version": "1.0.2",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/main.js",
+  "module": "dist/main.js",
   "types": "types/index.d.ts",
   "scripts": {
     "build": "webpack --config src/webpack.yo.js",
     "build:declare": "webpack --config src/webpack.yo.js --env declare=1"
   },
-  "sideEffects": [
-    "**/*.scss",
-    "**/*.css",
-    "**/element.ts"
-  ],
+  "sideEffects": false,
   "author": "",
   "dependencies": {
     "@voyo/core": "0.0.1-alpha.6",
     "@voyo/core-style": "^2.0.0",
-    "vue": "^2.6.14",
-    "vue-property-decorator": "^8.5.1",
-    "vuex": "^3.6.2",
+    "@ztwx/utils": "^1.5.4",
     "marked": "^2.1.2",
     "rxjs": "^6.6.7",
-    "@ztwx/utils": "^1.5.4",
-    "sass": "^1.35.1"
+    "sass": "^1.35.1",
+    "vue": "^2.6.14",
+    "vue-property-decorator": "^8.5.1",
+    "vuex": "^3.6.2"
   },
   "license": "ISC",
   "devDependencies": {
@@ -36,6 +32,7 @@
     "core-js": "^3.15.2",
     "resolve-url-loader": "^4.0.0",
     "tslib": "^2.3.0",
+    "webpack": "^5.41.1",
     "webpack-bundle-analyzer": "^4.4.2"
   }
 }

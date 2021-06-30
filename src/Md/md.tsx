@@ -1,6 +1,7 @@
 import Vue, {VNode} from "vue";
-
-const marked=require("marked");
+//@ts-ignore
+import marked from "marked";
+// const marked=require("marked");
 // const marked=(ars:any)=>{return ""}
 const convertVNodeToStr=(vNode:VNode):string=>{
   if(vNode.isComment)return "";

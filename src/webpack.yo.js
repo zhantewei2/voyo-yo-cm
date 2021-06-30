@@ -11,36 +11,40 @@ module.exports = ({ env, declare }) => {
         sourceMap: false,
         additionalData: "$--voyo-platform: h5;$--voyo-platform-h5: true;",
       },
+      tsLoaderConfig: declare?{}:undefined
     }),
     {
+      optimization:{
+        providedExports :true,
+        sideEffects: true,
+        concatenateModules: false,
+        innerGraph: true,
+        usedExports: true
+      },
       plugins: [
         // new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)(),
       ],
       experiments: {
         outputModule: true,
       },
-
       mode: "production",
       entry: {
         main: !declare?join("index.ts"):join("index-type.ts"),
       },
       output: {
-        environment: {
-          module: true,
-          dynamicImport: true,
-        },
         library: {
           type: "module",
         },
         path: join("../dist"),
-        module: true
+        filename: "[name].js",
+        module:true,
       },
-      "externalsType": "commonjs-module",
+      "externalsType": "module",
       externals: {
         rxjs: "rxjs",
         vue: "vue",
         "vue-property-decorator": "vue-property-decorator",
-        marked: "marked",
+        marked: "module marked",
         "element-ui":"element-ui",
         "@ztwx/utils": "@ztwx/utils",
       },
