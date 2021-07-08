@@ -59,7 +59,7 @@ export const setting: Setting = {
     inlineImg: loaderInline,
   },
   modal: {
-    baseIndex: 5000,
+    baseIndex: 1000,
   },
   icons: {
     backImg,

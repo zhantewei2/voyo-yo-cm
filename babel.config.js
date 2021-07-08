@@ -6,7 +6,8 @@ module.exports = {
       // "corejs":3,
       "modules": false
     }],
-    "@vue/babel-preset-jsx"],
+    "@vue/babel-preset-jsx"
+  ],
   
   // plugins: ["@babel/plugin-transform-runtime"],
 };

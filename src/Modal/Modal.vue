@@ -194,15 +194,20 @@ export default class extends Vue {
     this.checkBodyHid();
     this.index = modalIndexManager.activeModal(this.modalName);
   }
-  deactivated() {}
+  deactivated() {
+    this.checkBodyHid();
+  }
   checkBodyHid() {
+    
     if (this.isMobile && this.visible) {
       this.changeBodyOver = true;
       document.body.classList.add("y-hid");
     } else if ((!this.isMobile || !this.visible) && this.changeBodyOver) {
       document.body.classList.remove("y-hid");
+      this.changeBodyOver =false;
     }
   }
+  
   closeByControl() {
     // history.back();
     this.close();
@@ -213,6 +218,7 @@ export default class extends Vue {
   close() {
     this.visible = false;
     this.showUpdate(false);
+    this.checkBodyHid();
   }
 
   beforeDestroy(this: any) {
@@ -231,5 +237,6 @@ export default class extends Vue {
   popHistory() {
     history.back();
   }
+  mainScroll(){}
 }
 </script>
