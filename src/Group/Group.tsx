@@ -14,7 +14,7 @@ const watchGroup=(el:HTMLElement)=>{
       classManage.replaceClass("w","yo-group-grid-"+(preClass=v));
     }
   }
-  if(!ResizeObserver){
+  if(!window.ResizeObserver){
     // IE 承受苦难
     return el.classList.add("yo-group-grid-"+GROUP_GRID_DEFAULT);
   }
