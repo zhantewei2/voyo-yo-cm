@@ -55,6 +55,7 @@
   border: 1px solid $border-color;
   ._content-wrapper {
     overflow: hidden;
+    position:relative;
     @if $use-radius {
       border-radius: 0 0 $yo-modal-radius $yo-modal-radius;
     }
