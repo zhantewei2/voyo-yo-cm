@@ -1,6 +1,7 @@
 import {CreateElement, RenderContext} from "vue";
 import {resolveClass, resolveStyle} from "../util";
 import {setting} from "../setting";
+
 /**
  * @props
  * {title:string}
@@ -16,6 +17,7 @@ export const Card= {
   render(h:CreateElement,params:RenderContext<{
     title?: string
   }>){
+    
     const {slots,data,props}=params;
     const scope=slots();
     const headerExists=props.title || !!scope.title;

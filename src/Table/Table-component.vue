@@ -29,7 +29,7 @@ interface TableColumnCustomer extends TableColumn {
                   return h(
                     "el-table-column",
                     {
-                      props: Object.assign(column, { template: undefined }),
+                      props: {...column,template: undefined},
                     },
                     [
                       column.template
@@ -51,9 +51,7 @@ export default class Table extends Vue {
   @Prop({}) columns: TableColumnCustomer[];
   @Prop({}) loading: boolean;
   handleColumnTemplate =
-    (h: CreateElement, column: TableColumn) => (slotArgs: any) => {
-      return column.template(h, slotArgs);
-    };
+    (h: CreateElement, column: TableColumn) => (slotArgs: any) => column.template(h, slotArgs);
 }
 </script>
 <style scoped lang="scss"></style>
