@@ -17,9 +17,9 @@ module.exports = ({ env, declare }) => {
       optimization:{
         providedExports :true,
         sideEffects: true,
-        concatenateModules: false,
         innerGraph: true,
-        usedExports: true
+        usedExports: true,
+        concatenateModules: false,
       },
       plugins: [
         // new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)(),
@@ -42,11 +42,13 @@ module.exports = ({ env, declare }) => {
       "externalsType": "module",
       externals: {
         rxjs: "rxjs",
+        'rxjs/operators':'rxjs/operators',
         vue: "vue",
         "vue-property-decorator": "vue-property-decorator",
         marked: "module marked",
         "element-ui":"element-ui",
         "@ztwx/utils": "@ztwx/utils",
+        "@ztwx/utils/lib/url":"@ztwx/utils/lib/url"
       },
     },
   );

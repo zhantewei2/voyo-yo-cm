@@ -6,6 +6,9 @@
           @click="bgClick"
           v-if="visible && loneliness"
           class="yo-dialog-bg"
+          :style="{
+              zIndex: bgIndex
+          }"
         ></div>
       </yo-vnode>
     </yo-teleport>
@@ -118,7 +121,9 @@ export default class extends Vue {
     leaveActiveClass: "yo-an-fadein-active",
   };
   modalName: string;
-  index = 1;
+  modalBgName:string;
+  index = 2;
+  bgIndex=1;
   visible = false;
   visiblePre: "close" | "show" | "hold" = "close";
   closeSvg = setting.icons.closeImg;
@@ -137,6 +142,8 @@ export default class extends Vue {
       this.checkBodyHid();
     });
     this.modalName = getUniqueId();
+    this.modalBgName = "bg-"+this.modalName;
+    this.bgIndex=modalIndexManager.registryModal(this.modalBgName);
     this.index = modalIndexManager.registryModal(this.modalName);
   }
   mounted() {}
@@ -185,14 +192,18 @@ export default class extends Vue {
       this.timeoutAnimate = null;
     }
   }
+  activeModal(){
+    
+  }
   toActive() {
+    this.bgIndex=modalIndexManager.activeModal(this.modalBgName);
     this.index = modalIndexManager.activeModal(this.modalName);
   }
   open() {
     this.clearAn();
     this.visible = true;
     this.checkBodyHid();
-    this.index = modalIndexManager.activeModal(this.modalName);
+    this.toActive();
   }
   deactivated() {
     this.checkBodyHid();
