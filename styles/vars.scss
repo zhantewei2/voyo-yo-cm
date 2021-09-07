@@ -58,7 +58,7 @@ $yo-modal-radius:10px;
 $yo-modal-bg-bg: var(--color-bg-deep3);
 $yo-modal-dialog-bg: var(--color-bg);
 $yo-modal-footer-bg: var(--color-bg2);
-$yo-modal-card-size-name:small now large;
+$yo-modal-card-size-name:small now large !default;
 $yo-modal-card-size-width: 50vw 65vw 75vw !default;
 $yo-modal-card-size-max-width: 600px 750px 900px !default;
 $yo-modal-card-size: list.zip($yo-modal-card-size-name,$yo-modal-card-size-width,$yo-modal-card-size-max-width);
