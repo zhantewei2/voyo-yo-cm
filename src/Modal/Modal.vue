@@ -21,9 +21,7 @@
             isMobile ? 'yo-dialog-card-mobile' : 'yo-dialog-card',
             '__dialog-size-' + size,
           ]"
-          :style="{
-            zIndex: index,
-          }"
+          :style="[{zIndex: index},width?{width:width,maxWidth:'100vw'}:{}]"
           @click="cardClick"
           @mousedown="toActive"
           @mouseenter="cardEnter"
@@ -96,6 +94,7 @@ const EventName = "yo-dialog-card";
 
 @Component({})
 export default class extends Vue {
+  @Prop({default:""})width:string;
   @Prop({ default: true }) autoClose: boolean;
   @Prop({ default: false }) bgClose: boolean;
   @Prop({}) show: boolean;
