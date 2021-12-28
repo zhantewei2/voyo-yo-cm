@@ -13,6 +13,8 @@ import Tabs from "./Tabs/Tabs-component.vue";
 import { TabDirective } from "./Tabs/Tab.directive";
 import { Tabbar, TabbarItem } from "./Tabbar/Tabbar";
 import { Md } from "./Md/md";
+import { FormGroup,UpdateFormGroup} from "./FormGroup";
+
 
 export interface ModuleReturn {
   install: (v: typeof Vue) => void;
@@ -82,17 +84,25 @@ export const ModalModule = Module("modal", (vue) => {
   vue.component("yo-modal", Modal);
 });
 
+export const FormGroupModule= Module("formGroup",(vue)=>{
+  vue.use(GroupModule);
+  vue.component("yo-form-group",FormGroup);
+  vue.component("yo-update-form-group",UpdateFormGroup);
+})
+
+
 export const AllModule = {
   install(vue: typeof Vue) {
-    Vue.use(YoModule);
-    Vue.use(TeleportModule);
-    Vue.use(TabsModule);
-    Vue.use(TabbarModule);
-    Vue.use(TooltipModule);
+    vue.use(YoModule);
+    vue.use(TeleportModule);
+    vue.use(TabsModule);
+    vue.use(TabbarModule);
+    vue.use(TooltipModule);
     // Vue.use(MdModule);
-    Vue.use(GroupModule);
-    Vue.use(CardModule);
-    Vue.use(TableModule);
-    Vue.use(ModalModule);
+    vue.use(GroupModule);
+    vue.use(CardModule);
+    vue.use(TableModule);
+    vue.use(ModalModule);
+    vue.use(FormGroupModule);
   },
 };

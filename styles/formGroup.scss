@@ -1,0 +1,46 @@
+@use "vars" as *;
+
+
+@keyframes YoFormErrorIn {
+  from {opacity:0;transform: translateY(50%)}
+}
+.yo-cell{
+  padding-bottom: $yo-form-cell-padding;
+  position:relative;
+  &.__error{
+    color:$yo-form-error-color;
+    .el-input__inner{
+      border-color:$yo-form-error-color;
+    }
+  }
+}
+.yo-cell-error{
+  position:absolute;
+  left: $yo-cell-label-w;
+  bottom: $yo-form-cell-padding - 1em - $yo-form-error-top;
+  line-height: 1;
+  color: $yo-form-error-color;
+  font-size: var(--size-mini);
+  padding-left: .5em;
+  &.v-enter{
+    opacity:0;
+    transform: translateY(50%);
+  }
+  &.v-enter-active{
+    transition:all .25s ease-out;
+  }
+  &.v-leave-active{
+    transition:all .25s ease-out;
+  }
+  &.v-leave-to{
+    opacity:0;
+    transform: translateY(50%);
+  }
+}
+
+.yo-update-form-group{
+  footer{
+    padding: $yo-form-footer-padding;
+    text-align: right;
+  }
+}

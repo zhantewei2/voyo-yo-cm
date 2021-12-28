@@ -14,6 +14,7 @@ export declare const TabbarModule: ModuleReturn;
 export declare const TooltipModule: ModuleReturn;
 export declare const MdModule: ModuleReturn;
 export declare const ModalModule: ModuleReturn;
+export declare const FormGroupModule: ModuleReturn;
 export declare const AllModule: {
     install(vue: typeof Vue): void;
 };
