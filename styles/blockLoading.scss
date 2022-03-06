@@ -1,0 +1,30 @@
+@use "vars" as *;
+
+@keyframes YoBlockLoading {
+  from{}
+  to{transform: rotate(360deg)}
+}
+
+.yo-block-loading{
+  position:absolute;
+  @include Full();
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(white,.3);
+  backdrop-filter: blur(2px);
+  img{
+    animation:YoBlockLoading .5s linear infinite;
+  }
+}
+
+.yo-block-loading-active{
+  transition:all .3s ease-out;
+}
+
+.yo-block-loading-enter{
+  opacity:0;
+}
+.yo-block-loading-leave{
+  opacity:0;
+}

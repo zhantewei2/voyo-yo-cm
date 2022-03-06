@@ -1,13 +1,13 @@
 import Vue, { CreateElement, VNode } from "vue";
-import Component from "vue-class-component";
 import { FormGroup } from "./form-group";
 import { resolveClass } from "@/util";
 import { filterIncludeObj } from "@ztwx/utils/lib";
 import { ExcuteAfterConnected } from "@ztwx/utils/lib/web";
-import { Prop, Watch, Emit } from "vue-property-decorator";
+import { Prop, Watch, Emit ,Component} from "vue-property-decorator";
+
 
 @Component({
-  render(this: UpdateFormGroup<any>, h: CreateElement) {
+  render(this: UpdateFormGroup, h: CreateElement) {
     return h(
       "article",
       {
@@ -58,11 +58,9 @@ import { Prop, Watch, Emit } from "vue-property-decorator";
   },
   computed: {},
 })
-export class UpdateFormGroup<
-  OriginValue extends Record<string, any>
-> extends Vue {
-  @Prop({}) originValue: OriginValue;
-  @Prop({}) updateFn: (value: Partial<OriginValue>) => Promise<void>;
+export class UpdateFormGroup extends Vue {
+  @Prop({}) originValue: any;
+  @Prop({}) updateFn: (value:any) => Promise<void>;
   @Prop({ default: "更新失败" }) defaultError: string;
   @Prop({default:"保存"})confirmText:string;
   @Prop({default:"取消"})cancelText:string;
@@ -75,6 +73,7 @@ export class UpdateFormGroup<
     if (!v) return;
     this.executeAfterFormGroup.execute(() => {
       this.groupInstance.valueForm.setOriginValue(v);
+      this.groupInstance.reset();
       this.groupInstance.valueForm.isChanged;
     });
   }

@@ -2,8 +2,24 @@ import { fromEvent, merge, Observable, of } from "rxjs";
 import { map, distinctUntilChanged } from "rxjs/operators";
 import { setting } from "./setting";
 import { ioc, ROUTER_CHANGE_IOC_NAME, RouterChangeService } from "@voyo/core";
-import { CreateElement, RenderContext, VNode } from "vue";
+import Vue, { CreateElement, RenderContext, VNode } from "vue";
 import { isObject } from "@ztwx/utils";
+import {ModuleReturn} from "./registry";
+
+export const Module = (
+  key: string,
+  installCb: (v: typeof Vue) => void,
+): ModuleReturn => {
+  return {
+    install(v: typeof Vue) {
+      const store = (v.prototype[setting.installStoreKey] =
+        v.prototype[setting.installStoreKey] || {});
+      !store[key] && installCb(v);
+      store[key] = true;
+    },
+  };
+};
+
 
 //functional class继承
 export const resolveClass = (data: any, addition: string[] = []) => {
@@ -189,3 +205,39 @@ export class ExecuteDistinctAfter<T> {
 export class YoVueComponent {
   constructor() {}
 }
+
+export const proxyObj=<T,K extends keyof T,V extends T[K]>(obj:T,key:K,{set,initV}:{
+  set?: (v:V)=>void,
+  initV?: V
+}):void=>{
+  const descriptor=Object.getOwnPropertyDescriptor(obj,key);
+  let tmpVal:V|undefined =initV;
+  
+  Object.defineProperty(obj,key,{
+    set(v:V){
+      if(v===tmpVal)return;
+      descriptor&&descriptor.set&&descriptor.set.call(obj,v);
+      set&&set(v);
+      tmpVal=v;
+    },
+    get(){
+      descriptor&&descriptor.get&&descriptor.get.call(obj);
+      return tmpVal;
+    }
+  });
+}
+
+
+export const prepatchInsert = <T extends VNode>(
+  node: T,
+  insert: (node: T) => void,
+) => {
+  node.data = node.data || {};
+  node.data.hook = node.data.hook || {};
+  const oldInsert = node.data.hook.insert;
+
+  node.data.hook.insert = () => {
+    insert(node);
+    oldInsert && oldInsert(node);
+  };
+};

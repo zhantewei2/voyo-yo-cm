@@ -7,6 +7,7 @@ export declare type resultHandleFn = <T extends {
     [key in keyof T]: any;
 };
 export declare type inputValHandleFn = (controller: YoFormController, v: ControllerVal) => ControllerVal;
+export declare const createForm: <T extends YoForm>(form: T) => T;
 export declare class PreInstallControllerData {
     list: Array<preInstallDataFn>;
     listResult: Array<resultHandleFn>;

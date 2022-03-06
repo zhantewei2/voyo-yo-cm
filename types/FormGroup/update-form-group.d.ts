@@ -1,9 +1,9 @@
 import Vue, { VNode } from "vue";
 import { FormGroup } from "./form-group";
 import { ExcuteAfterConnected } from "@ztwx/utils/lib/web";
-export declare class UpdateFormGroup<OriginValue extends Record<string, any>> extends Vue {
-    originValue: OriginValue;
-    updateFn: (value: Partial<OriginValue>) => Promise<void>;
+export declare class UpdateFormGroup extends Vue {
+    originValue: any;
+    updateFn: (value: any) => Promise<void>;
     defaultError: string;
     confirmText: string;
     cancelText: string;

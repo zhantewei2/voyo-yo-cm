@@ -1,6 +1,7 @@
-import { Form, Validator } from "@ztwx/form";
+import { Form, SubjectOrder, Validator } from "@ztwx/form";
 import { CreateElement, VNode } from "vue";
 export declare type ControllerVal = string | number | boolean;
+export declare type ControllerValueChangeFn = (val: ControllerVal, form: Form) => void;
 export declare type YoFormControllerBase = {
     id: string;
     value?: ControllerVal;
@@ -18,12 +19,20 @@ export declare type YoFormControllerBase = {
     required?: boolean;
     error?: string;
     disablePreInstall?: boolean;
-    valueChange?: (val: ControllerVal, form: Form) => void;
+    valueChange?: ControllerValueChangeFn | {
+        immediate?: boolean;
+        handle: ControllerValueChangeFn;
+    };
     disabled?: boolean;
     on?: {
         [key: string]: any;
     };
     shadow?: boolean;
+    valueChangeOrder?: SubjectOrder<any>;
+    _setFn?: {
+        _value?: (v: ControllerVal) => void;
+        _required?: (v: boolean) => void;
+    };
 };
 export declare type YoFormControllerTag = {
     tag: string;

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { setting } from "./setting";
+import {Module} from "./util";
 import { ripple } from "./ripple.directive";
 import { Group, Cell } from "./Group/Group";
 import { Card } from "./Card/Card";
@@ -20,19 +20,6 @@ export interface ModuleReturn {
   install: (v: typeof Vue) => void;
 }
 
-export const Module = (
-  key: string,
-  installCb: (v: typeof Vue) => void,
-): ModuleReturn => {
-  return {
-    install(v: typeof Vue) {
-      const store = (v.prototype[setting.installStoreKey] =
-        v.prototype[setting.installStoreKey] || {});
-      !store[key] && installCb(v);
-      store[key] = true;
-    },
-  };
-};
 
 export const YoModule = Module("yo", (vue) => {
   vue.directive("yo-ripple", ripple);

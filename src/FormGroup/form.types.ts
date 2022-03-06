@@ -1,7 +1,11 @@
-import { Form, Validator } from "@ztwx/form";
+import {Form, SubjectOrder, Validator} from "@ztwx/form";
 import {CreateElement, VNode, VNodeData} from "vue";
+import {Subscription} from "rxjs";
 
 export type ControllerVal = string | number | boolean;
+export type ControllerValueChangeFn=  (val:ControllerVal,form:Form)=>void;
+
+
 export type YoFormControllerBase = {
   id: string;
   value?: ControllerVal; //初始值
@@ -15,10 +19,18 @@ export type YoFormControllerBase = {
   required?: boolean;
   error?: string;
   disablePreInstall?: boolean; //禁用全局处理 tag
-  valueChange? :(val:ControllerVal,form:Form)=>void;  // controller value改变
+  valueChange? : ControllerValueChangeFn | {
+    immediate?: boolean;
+    handle: ControllerValueChangeFn
+  }  // controller value改变
   disabled?:boolean ;//disabled;
   on?:{ [key: string]: any };
   shadow?: boolean; /// 不显示于ui;
+  valueChangeOrder?: SubjectOrder<any>;
+  _setFn?:{
+    _value?: (v:ControllerVal)=>void;
+    _required?:(v:boolean)=>void;
+  }
 };
 
 export type YoFormControllerTag = {

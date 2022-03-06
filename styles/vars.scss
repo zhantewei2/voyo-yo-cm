@@ -81,10 +81,22 @@ $yo-md-code-bg-color: var(--color-gentle-gentle);
 $yo-md-quote-bg-color: var(--color-primary2-gentle);
 $yo-md-quote-border-color: var(--color-primary2-light);
 
-
 //formGroup
-$yo-form-cell-padding: 1.5em !default;
+$yo-form-cell-padding: 1.3em !default;
 $yo-form-error-top: .2em !default;
 $yo-form-error-color: red !default;
 $yo-form-footer-padding: 1rem 0 0 0 !default;
 
+//datepicker-calendar
+$yo-calendar-main-total-h: 260px !default;
+$yo-calendar-header-h: 50px !default;
+$yo-calendar-main-padding: 0 0 10px 0 !default;
+$yo-calendar-main-rows:4 5 6 !default;
+$yo-calendar-main-title-h: 46px !default;
+$yo-calendar-bg: var(--color-bg) !default;
+$yo-calendar-header-bg: var(--color-bg) !default;
+$yo-calendar-item-font-size: var(--size-small) !default;
+$yo-calendar-selected-bg: var(--color-primary) !default;
+$yo-calendar-selected-color: var(--color-primary-font)!default;
+$yo-calendar-range-bg: var(--color-primary-gentle) !default;
+$yo-calendar-cell-margin: 5px !default;

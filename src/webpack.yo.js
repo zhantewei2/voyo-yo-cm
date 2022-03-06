@@ -48,7 +48,8 @@ module.exports = ({ env, declare }) => {
         marked: "module marked",
         "element-ui":"element-ui",
         "@ztwx/utils": "@ztwx/utils",
-        "@ztwx/utils/lib/url":"@ztwx/utils/lib/url"
+        "@ztwx/utils/lib/url":"@ztwx/utils/lib/url",
+        "@ztwx/utils/lib/web":"@ztwx/utils/lib/web"
       },
     },
   );

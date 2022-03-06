@@ -78,6 +78,7 @@ export const setting: Setting = {
     grid: 5,
     span: 1,
     dynamicGrid: (w) => {
+      
       if (w >= 1000) {
         return 5;
       } else if (w < 1000 && w >= 800) {

@@ -1,0 +1,9 @@
+@use "../../styles/yo" as yo;
+@import "~@voyo/core-style/lib/css-vars-root.css";
+//
+
+body{
+  margin: 0;
+  @include yo.RootBody();
+  //@include 
+}

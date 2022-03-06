@@ -2,7 +2,6 @@ import Vue from "vue";
 export interface ModuleReturn {
     install: (v: typeof Vue) => void;
 }
-export declare const Module: (key: string, installCb: (v: typeof Vue) => void) => ModuleReturn;
 export declare const YoModule: ModuleReturn;
 export declare const GroupModule: ModuleReturn;
 export declare const CardModule: ModuleReturn;

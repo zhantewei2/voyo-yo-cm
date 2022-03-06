@@ -1,6 +1,6 @@
 import Vue, { CreateElement, VNode } from "vue";
 import { Component, Emit, Inject, Prop, Watch } from "vue-property-decorator";
-import { Form, requiredValidator, Validator } from "@ztwx/form";
+import {ControllerItem, Form, requiredValidator, Validator} from "@ztwx/form";
 import {
   YoForm,
   YoFormController,
@@ -8,6 +8,8 @@ import {
 } from "./form.types";
 import { preInstallControllerData, PreInstallControllerData } from "./form";
 import {filterIncludeObj} from "@ztwx/utils";
+import {proxyObj} from "@/util";
+import {concatMapTo} from "rxjs/operators";
 
 
 export const errorMsg = (
@@ -42,7 +44,7 @@ export const errorMsg = (
             class: [controller.error ? "__error" : ""],
             props: {
               label: controller.label,
-              important: controller.star,
+              important: controller.star|| controller.required,
               span: controller.span,
             },
           },
@@ -71,10 +73,10 @@ export const errorMsg = (
                           this.valueForm.value[
                             controller.id
                           ] = val;
-                          if(controller.valueChange)controller.valueChange(val,this.valueForm);
-                          if(controller.on&&controller.on.input)controller.on.input(val);
+                          if(controller.on&&controller.on.input)controller.on.input.call(val,this.valueForm);
                         },
-                        ...(controller.on?filterIncludeObj(controller.on,["input"]):{})
+                        
+                        ...(controller.on?this.patchListeners(controller.on,["input"]):{})
                         
                       },
                     },
@@ -98,32 +100,29 @@ export class FormGroup extends Vue {
   @Prop({default:false})formDisabled:boolean;
   @Watch("form", { immediate: true })
   watchForm(controllers: YoFormController[]) {
-    if (!controllers) return;
+    if (!controllers || controllers==this.controllers) return;
+    
     this.valueForm = new Form(
-      controllers.map(controller => ({
-        id: controller.id,
-        value: controller.value,
-        validator: (controller.validators || []).concat(
-          controller.required
-            ? [new requiredValidator(`${controller.label}不能为空`)]
-            : [],
-        ),
-      })),
+      controllers.map(controller => {
+        const validators=controller.validators ||[];
+        this.requireValidator(controller,controller.required);
+        return {
+          id: controller.id,
+          value: controller.value,
+          validator: validators
+        }}),
     );
-    this.controllers = controllers.map(controller => ({
-      star: controller.star ?? controller.required,
-      error: "",
-      ...controller,
-    }));
+    this.controllers=controllers;
+    this.controllers.forEach(controller=>this.watchController(controller));
     this.valueForm.valueChange.subscribe(v=>this.formChange(v));
   }
   @Watch("valueForm._isChanged") watchValueFormChanged(changed: boolean) {
     this.hasChanged(changed);
   }
   
-  
   @Emit("hasChanged") hasChanged(v: boolean) {}
   @Emit("formChange")formChange(v:any){}
+  preControllers:any;
   valueForm: Form = new Form([]);
   controllers: YoFormController[] = [];
   // 获得form值
@@ -138,7 +137,7 @@ export class FormGroup extends Vue {
    */
   async checkError(): Promise<string[] | void> {
     const errors = await this.valueForm.catchValidatorsErr();
-  
+
     this.valueForm.controllers.forEach(item => {
       const controller: YoFormController = this.controllers.find(
         i => i.id === item.id,
@@ -158,5 +157,71 @@ export class FormGroup extends Vue {
   }
   setOrigin(v: Record<string, any>) {
     this.valueForm.setOriginValue(v);
+  }
+  
+  patchListeners<T extends {[k:string]:(...args:any[])=>void},K extends keyof T>(
+    listeners:{[P in keyof T]:T[P]},
+    excludes:  K[]
+  ):{[c in keyof T]?:(...args:any[])=>void}{
+    const nextListeners:{[c in keyof T]?:(...args:any[])=>void}={};
+    for(let i in listeners){
+     if(listeners.hasOwnProperty(i)&&!excludes.includes(i as any)){
+       nextListeners[i]=(...args:any[])=>{
+         listeners[i](...args,this.valueForm);
+       }
+     }
+    }
+    return nextListeners;
+  }
+  watchController(controller:YoFormController){
+    // Object.defineProperty()
+    
+    const self=this;
+
+    if(controller.valueChangeOrder)controller.valueChangeOrder.unsubscribe();
+    const change:any=controller.valueChange;
+    controller.valueChangeOrder=self.valueForm.controllerDict[controller.id].valueChange.subscribe((controllerItem:ControllerItem)=>{
+      controller.value=controllerItem.value;
+      if(change){
+        if(change instanceof Function)change(controller.value,self.valueForm);
+        if(change.handle)change.handle(controller.value,self.valueForm);
+      }
+    })
+    if(change&&change.immediate&&change.handle) change.handle(controller.value);
+    
+    controller._setFn=controller._setFn||{};
+    if(!controller._setFn._value){
+      proxyObj(controller,"value",{
+        set(v){
+          //@ts-ignore
+          controller._setFn._value&&controller._setFn._value(v);
+        },
+        initV: controller.value
+      })
+    }
+    if(!controller._setFn._required){
+      proxyObj(controller,"required",{
+        set(v){
+          //@ts-ignore
+          controller._setFn._required&&controller._setFn._required(v);
+        },
+        initV: controller.required
+      })
+    }
+    controller._setFn._value=(v)=>{
+      self.valueForm.value[controller.id]=v;
+    }
+    controller._setFn._required=(v)=>{
+      self.requireValidator(controller,v);
+    }
+  }
+  
+  requireValidator(controller:YoFormController,append?:boolean){
+    
+    controller.validators= controller.validators ||[];
+    const existsIndex=controller.validators.findIndex(validate=>validate instanceof requiredValidator);
+    if(existsIndex<0&&append) controller.validators.push(new requiredValidator(`${controller.label}不能为空`));
+    if(existsIndex>=0&&!append) controller.validators.splice(existsIndex,1);
+
   }
 }

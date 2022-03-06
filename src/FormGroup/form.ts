@@ -22,6 +22,16 @@ export type inputValHandleFn = (
   v: ControllerVal,
 ) => ControllerVal;
 
+
+export const createForm=<T extends YoForm>(form:T):T=>{
+  form.forEach(controller=>{
+    controller.error=controller.error??"";
+    controller.star=controller.star??controller.required;
+    controller.validators=controller.validators || [];
+  })
+  return form;
+}
+
 export class PreInstallControllerData {
   list: Array<preInstallDataFn> = [];
   listResult: Array<resultHandleFn> = [];

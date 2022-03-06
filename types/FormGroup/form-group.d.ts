@@ -11,6 +11,7 @@ export declare class FormGroup extends Vue {
     watchValueFormChanged(changed: boolean): void;
     hasChanged(v: boolean): void;
     formChange(v: any): void;
+    preControllers: any;
     valueForm: Form;
     controllers: YoFormController[];
     getValue(): {
@@ -20,4 +21,13 @@ export declare class FormGroup extends Vue {
     reset(): void;
     getUpdateValue(): Record<string, any> | undefined;
     setOrigin(v: Record<string, any>): void;
+    patchListeners<T extends {
+        [k: string]: (...args: any[]) => void;
+    }, K extends keyof T>(listeners: {
+        [P in keyof T]: T[P];
+    }, excludes: K[]): {
+        [c in keyof T]?: (...args: any[]) => void;
+    };
+    watchController(controller: YoFormController): void;
+    requireValidator(controller: YoFormController, append?: boolean): void;
 }

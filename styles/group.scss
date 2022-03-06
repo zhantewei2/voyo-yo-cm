@@ -8,7 +8,8 @@
 }
 .yo-cell{
   display:flex;
-  padding-bottom: .6em;
+  padding-bottom: $yo-form-cell-padding;
+  position: relative;
   ._cell-label{
     display:inline-flex;
     align-items: center;

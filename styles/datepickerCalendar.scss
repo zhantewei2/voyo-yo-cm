@@ -1,0 +1,113 @@
+@use "sass:math";
+
+@use "vars" as *;
+
+@mixin CalendarBlockColor{
+  background: $yo-calendar-selected-bg;
+  color: $yo-calendar-selected-color;
+}
+
+@keyframes DatePickerSelected {
+  from {transform:  translate3d(-50%,-50%,0) scale(0.5)}
+  to {transform: translate3d(-50%,-50%,0) scale(1)  }
+}
+
+%item-selected{
+  color: $yo-calendar-selected-color;
+  &::after{
+    @include Animation(DatePickerSelected,"fast",true);
+    z-index:-1;
+    content: "";
+    position: absolute;
+    top:50%;
+    left:50%;
+    background: $yo-calendar-selected-bg;
+    //transform: translate3d(-50        background: $yo-calender-selected-bg;%,-50%,0);
+    border-radius:50%;
+  }
+}
+
+.datepicker-scroll-item{
+  background: $yo-calendar-bg;
+  ._picker-cell{
+    z-index:1;
+    width: math.div(100%,7);
+    text-align: center;
+    position:relative;
+    box-sizing: border-box;
+    margin: $yo-calendar-cell-margin 0;
+    @include Transition(all,.3s ease-out,fast);
+    &.__shadow{
+      color:var(--color-font-des);
+    }
+    &.__selected{
+      @extend %item-selected;
+    }
+    &.__selected-start{
+      @extend %item-selected;
+      background: $yo-calendar-range-bg;
+    }
+    &.__selected-end{
+      @extend %item-selected;
+      background: $yo-calendar-range-bg;
+    }
+    &.__selected-range{
+      background: var(--color-primary-gentle);
+    }
+
+    color:var(--color-font-base);
+  }
+  ._picker-header{
+    background: $yo-calendar-header-bg;
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-font-title);
+    font-size: var(--size-medium);
+    line-height:$yo-calendar-header-h;
+  }
+  ._picker-main-title{
+    display:flex;
+    position:relative;
+    line-height: $yo-calendar-main-title-h;
+    ._picker-cell{
+      height: $yo-calendar-main-title-h;
+      font-weight: bold;
+    }
+    @include AfterBorder($percent:95%);
+  }
+  ._picker-main{
+    display:flex;
+    flex-wrap:wrap;
+    height: $yo-calendar-main-total-h;
+    padding: $yo-calendar-main-padding;
+    ._picker-cell{
+
+      font-size: $yo-calendar-item-font-size;
+    }
+    @each $i in $yo-calendar-main-rows{
+      $h: math.div($yo-calendar-main-total-h,$i) - $yo-calendar-cell-margin *2;
+      &.__row-#{$i}{
+        ._picker-cell{
+          height: $h;
+          line-height: $h;
+          $after-h: $h*0.8;
+          $radius: $h/2;
+          &.__selected-start{
+            border-radius: $radius 0 0 $radius;
+          }
+          &.__selected-end{
+            border-radius: 0 $radius $radius 0;
+          }
+          &.__selected-range-alone{
+            border-radius: $radius;
+          }
+          &::after{
+            width: $after-h;
+            height: $after-h;
+          }
+        }
+      }
+    }
+
+  }
+}

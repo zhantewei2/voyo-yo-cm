@@ -5,8 +5,6 @@
   from {opacity:0;transform: translateY(50%)}
 }
 .yo-cell{
-  padding-bottom: $yo-form-cell-padding;
-  position:relative;
   &.__error{
     color:$yo-form-error-color;
     .el-input__inner{

@@ -1,5 +1,7 @@
 import { Observable } from "rxjs";
-import { CreateElement, RenderContext, VNode } from "vue";
+import Vue, { CreateElement, RenderContext, VNode } from "vue";
+import { ModuleReturn } from "./registry";
+export declare const Module: (key: string, installCb: (v: typeof Vue) => void) => ModuleReturn;
 export declare const resolveClass: (data: any, addition?: string[]) => any[];
 export declare const resolveStyle: (data: any, addition?: Record<string, string>[]) => any[];
 export declare const watchIsMobile: ({ immediate, }: {
@@ -46,4 +48,9 @@ export declare class ExecuteDistinctAfter<T> {
 export declare class YoVueComponent {
     constructor();
 }
+export declare const proxyObj: <T, K extends keyof T, V extends T[K]>(obj: T, key: K, { set, initV }: {
+    set?: ((v: V) => void) | undefined;
+    initV?: V | undefined;
+}) => void;
+export declare const prepatchInsert: <T extends VNode>(node: T, insert: (node: T) => void) => void;
 export {};
