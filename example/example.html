@@ -1,14 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="cn">
 <head>
   <meta charset="UTF-8">
+  <base href="<%=htmlWebpackPlugin.options.baseUrl %>">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>example</title>
+  <% var cssFiles=htmlWebpackPlugin.options.cssFiles;var jsFiles=htmlWebpackPlugin.options.jsFiles; var base=htmlWebpackPlugin.options.baseUrl %>
+  <% for(var i=0;i<cssFiles.length;i++){ %>
+  <link rel="stylesheet" type="text/css" href="<%=base+cssFiles[i]%>"></link><% } %>
+  <% for(var i=0;i<jsFiles.length;i++){ %><script src="<%=base+jsFiles[i]%>"></script><% } %>
+
 </head>
 <body>
-
   <div id="root"></div>
 </body>
 </html>

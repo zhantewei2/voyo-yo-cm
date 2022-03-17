@@ -13,7 +13,8 @@ import Tabs from "./Tabs/Tabs-component.vue";
 import { TabDirective } from "./Tabs/Tab.directive";
 import { Tabbar, TabbarItem } from "./Tabbar/Tabbar";
 import { Md } from "./Md/md";
-import { FormGroup,UpdateFormGroup} from "./FormGroup";
+import {FormGroup, UpdateFormGroup, yoPreHandleForm} from "./FormGroup";
+import {Select} from "./Select/Select";
 
 
 export interface ModuleReturn {
@@ -72,12 +73,15 @@ export const ModalModule = Module("modal", (vue) => {
 });
 
 export const FormGroupModule= Module("formGroup",(vue)=>{
+  yoPreHandleForm();
   vue.use(GroupModule);
   vue.component("yo-form-group",FormGroup);
   vue.component("yo-update-form-group",UpdateFormGroup);
 })
 
-
+export const SelectModule= Module("select",(vue)=>{
+  vue.component("yo-select",Select);
+})
 export const AllModule = {
   install(vue: typeof Vue) {
     vue.use(YoModule);
@@ -91,5 +95,6 @@ export const AllModule = {
     vue.use(TableModule);
     vue.use(ModalModule);
     vue.use(FormGroupModule);
+    vue.use(SelectModule);
   },
 };

@@ -1,0 +1,22 @@
+<div class="yo-core-page" :class="{'__navOpen':core.navOpened}" @click="coreClick">
+
+  <yo-header/>
+  <KeepAlive>
+    <transition name="core-nav">
+      <yo-nav v-if="core.navShow"/>
+    </transition>
+  </KeepAlive>
+  <main class="content">
+    <div class="yo-core-content">
+        <article>
+          <router-view/>
+        </article>
+    </div>
+    <div class="yo-core-content-sidebar">
+      <article>
+        <yo-sidebar/>
+      </article>
+    </div>
+  </main>
+  <footer></footer>
+</div>

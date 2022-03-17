@@ -1,0 +1,28 @@
+body{
+  z-index:0;
+  word-wrap:break-word;
+  padding:0;
+  margin:0;
+  text-rendering:optimizeLegibility;
+  -webkit-user-drag:none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action:manipulation;
+}
+.yo-code-pre{
+  font-family:  SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  background: var(--color-bg3);
+  @include Radius($type:medium);
+  padding:2rem;
+  overflow-x:auto;
+  font-size: var(--size-mini);
+}
+*{
+  box-sizing: border-box;
+}
+.router-view-fade-enter{
+  opacity:0;
+}
+.router-view-fade-enter-active{
+  transition: all .25s ease-out;
+}

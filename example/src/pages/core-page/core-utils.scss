@@ -1,0 +1,45 @@
+@use "../../styles/base" as *;
+.core-header-btn{
+  position: relative;
+  height:100%;
+  @include ICenter();
+  padding:0 2rem;
+  font-size: 2rem;
+  &:hover{
+    cursor: pointer;
+    background:var(--color-bg2);
+  }
+}
+.core-header-block{
+  position: relative;
+  height:100%;
+  vertical-align: top;
+  @include ICenter();
+}
+
+.core-header-toggle-btn{
+  @extend .core-header-btn;
+  padding:unset;
+  width: 6rem;
+  i{
+    left:50%;
+    top:50%;
+    position:absolute;
+    transform: translate3d(-50%,-50%,0);
+    display:block;
+  }
+}
+
+.core-nav-enter{
+  opacity:0;
+  transform: translate3d(0,-50%,0);
+}
+.core-nav-leave-to{
+  opacity:0;
+}
+.core-nav-enter-active{
+  transition: transform .25s ease-out, opacity .25s ease;
+}
+.core-nav-leave-active {
+  transition: transform,opacity .15s ease-out;
+}

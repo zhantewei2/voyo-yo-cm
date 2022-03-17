@@ -1,0 +1,14 @@
+@use "sass:list";
+@use "~@voyo/core-style/lib/vars" as core;
+$color-primary: indianred;
+$color-primary2: #e6a826;
+$color-secondary: #ee2564;
+$color-primary-light: lighten($color-primary, 15%);
+$color-primary-gentle: rgba($color-primary,.1);
+$color-error: red;
+
+$easeInBack     : cubic-bezier(0.600, -0.280, 0.735, 0.045);
+$easeOutBack    : cubic-bezier(0.175,  0.885, 0.320, 1.275);
+$easeInOutBack  : cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+

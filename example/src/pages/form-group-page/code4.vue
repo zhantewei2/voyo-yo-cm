@@ -1,0 +1,72 @@
+<template>
+  <div>
+    <yo-form-group ref="yoFormGroup" :form="form"></yo-form-group>
+    <div class="voyo-area-content text-center">
+      <el-button @click="confirm" type="primary">confirm</el-button>
+      <el-button @click="reset">reset</el-button>
+    </div>
+    <div class="voyo-area-deep" v-if="result">
+      {{result}}
+    </div>
+  </div>
+</template>
+
+<script>
+import {regExpValidator, requiredValidator} from "@ztwx/form";
+
+export default {
+  data() {
+    return {
+      result: null,
+      form:[
+        {
+          label :"姓名",
+          id: "name",
+          tag: "el-input",
+          required: true,
+        },
+        {
+          label: "年龄",
+          id: "age",
+          tag: "el-input",
+          props:{
+            type:"number",
+          },
+          required: false,
+        },
+        {
+          label: "职业",
+          id: "occupation",
+          span:2,
+          required:true,
+          render:(h,form)=>{
+            return h("el-input",{
+              class:"w-100",
+              on:{
+                input:v=> form.value.occupation=v,
+              },
+              props:{
+                value: form.value.occupation
+              }
+            })
+          }
+        },
+      ]
+    }
+  },
+  methods: {
+    async confirm(){
+      const errors=await this.$refs.yoFormGroup.checkError(); //校验并获取表单错误
+      if(errors&&errors.length)return;  //表单校验未通过
+      this.result=this.$refs.yoFormGroup.getValue() //获得表单结果
+
+    },
+
+    async reset(){
+      this.$refs.yoFormGroup.reset(); //重置表单
+      this.result=null;
+    }
+  },
+}
+
+</script>

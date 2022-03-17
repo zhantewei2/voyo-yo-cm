@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop, Watch,Emit } from "vue-property-decorator";
-import {getDays, Day, DateDay, PickerDay,timeStampDay} from "@/utils/date";
+import {getDays, Day, DateDay, PickerDay,timeStampDay} from "../utils/date";
 import {i18n} from "../i18n/i18n";
 
 @Component({
@@ -37,7 +37,7 @@ export default class DatePickerScrollItem extends Vue {
   @Watch("index", { immediate: true }) watchIndex(v:number) {
     this.watch();
   }
-  
+
   weeks:string[]=["mon","tue","des","thurs","fri","sat","sun"].map(name=>i18n.datePickerScroll[name]);
   yearText= i18n.datePickerScroll.year;
   monthText=i18n.datePickerScroll.month;
@@ -74,7 +74,7 @@ export default class DatePickerScrollItem extends Vue {
   restoreDateDayByIndex(dateDay: DateDay, index: number): DateDay {
     const m = dateDay.m + index;
     let m0 = m % 12;
-    
+
     const a= {
       y: dateDay.y+Math.ceil(m/12)-1,
       m: m0 === 0 ? 12 : m0 < 0 ? 12 + m0 : m0,

@@ -1,0 +1,379 @@
+@font-face {
+  font-family: "cmNzx";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  
+  src: url("./cmNzx.woff2?name=1621794721212") format("woff2"), url("./cmNzx.woff?name=1621794721212") format("woff"); 
+}
+
+.za {
+  display: inline-block;
+  font-family: "cmNzx";
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.za-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.za-xs {
+  font-size: 0.75em;
+}
+
+.za-sm {
+  font-size: 0.875em;
+}
+
+.za-1x {
+  font-size: 1em;
+}
+
+.za-2x {
+  font-size: 2em;
+}
+
+.za-3x {
+  font-size: 3em;
+}
+
+.za-4x {
+  font-size: 4em;
+}
+
+.za-5x {
+  font-size: 5em;
+}
+
+.za-6x {
+  font-size: 6em;
+}
+
+.za-7x {
+  font-size: 7em;
+}
+
+.za-8x {
+  font-size: 8em;
+}
+
+.za-9x {
+  font-size: 9em;
+}
+
+.za-10x {
+  font-size: 10em;
+}
+
+.za-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.za-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.za-pull-left {
+  float: left;
+}
+
+.za-pull-right {
+  float: right;
+}
+
+.za.za-pull-left {
+  margin-right: 0.3em;
+}
+
+.za.za-pull-right {
+  margin-left: 0.3em;
+}
+
+
+.za-about::before {
+  content: "\ea01";
+}
+
+.za-avatar::before {
+  content: "\ea02";
+}
+
+.za-avatar2::before {
+  content: "\ea03";
+}
+
+.za-back::before {
+  content: "\ea04";
+}
+
+.za-call::before {
+  content: "\ea05";
+}
+
+.za-close::before {
+  content: "\ea06";
+}
+
+.za-close-circle::before {
+  content: "\ea07";
+}
+
+.za-complete::before {
+  content: "\ea08";
+}
+
+.za-course::before {
+  content: "\ea09";
+}
+
+.za-cup::before {
+  content: "\ea0a";
+}
+
+.za-customer::before {
+  content: "\ea0b";
+}
+
+.za-del::before {
+  content: "\ea0c";
+}
+
+.za-del-outline::before {
+  content: "\ea0d";
+}
+
+.za-dialogue::before {
+  content: "\ea0e";
+}
+
+.za-down::before {
+  content: "\ea0f";
+}
+
+.za-edit::before {
+  content: "\ea10";
+}
+
+.za-email::before {
+  content: "\ea11";
+}
+
+.za-error::before {
+  content: "\ea12";
+}
+
+.za-exit::before {
+  content: "\ea13";
+}
+
+.za-family::before {
+  content: "\ea14";
+}
+
+.za-friend::before {
+  content: "\ea15";
+}
+
+.za-full-screen::before {
+  content: "\ea16";
+}
+
+.za-game::before {
+  content: "\ea17";
+}
+
+.za-gift::before {
+  content: "\ea18";
+}
+
+.za-goldCon::before {
+  content: "\ea19";
+}
+
+.za-home::before {
+  content: "\ea1a";
+}
+
+.za-home2::before {
+  content: "\ea1b";
+}
+
+.za-integral::before {
+  content: "\ea1c";
+}
+
+.za-integral2::before {
+  content: "\ea1d";
+}
+
+.za-load2::before {
+  content: "\ea1e";
+}
+
+.za-loading::before {
+  content: "\ea1f";
+}
+
+.za-loading2::before {
+  content: "\ea20";
+}
+
+.za-mail2::before {
+  content: "\ea21";
+}
+
+.za-menu::before {
+  content: "\ea22";
+}
+
+.za-message::before {
+  content: "\ea23";
+}
+
+.za-mini-more::before {
+  content: "\ea24";
+}
+
+.za-more::before {
+  content: "\ea25";
+}
+
+.za-more2::before {
+  content: "\ea26";
+}
+
+.za-my::before {
+  content: "\ea27";
+}
+
+.za-my2::before {
+  content: "\ea28";
+}
+
+.za-order::before {
+  content: "\ea29";
+}
+
+.za-order-form::before {
+  content: "\ea2a";
+}
+
+.za-order-form2::before {
+  content: "\ea2b";
+}
+
+.za-pentagon::before {
+  content: "\ea2c";
+}
+
+.za-people::before {
+  content: "\ea2d";
+}
+
+.za-phone::before {
+  content: "\ea2e";
+}
+
+.za-plus::before {
+  content: "\ea2f";
+}
+
+.za-qr-code::before {
+  content: "\ea30";
+}
+
+.za-qs::before {
+  content: "\ea31";
+}
+
+.za-qs2::before {
+  content: "\ea32";
+}
+
+.za-question2::before {
+  content: "\ea33";
+}
+
+.za-record::before {
+  content: "\ea34";
+}
+
+.za-reduce::before {
+  content: "\ea35";
+}
+
+.za-right::before {
+  content: "\ea36";
+}
+
+.za-scan-qr::before {
+  content: "\ea37";
+}
+
+.za-screen::before {
+  content: "\ea38";
+}
+
+.za-search::before {
+  content: "\ea39";
+}
+
+.za-selected::before {
+  content: "\ea3a";
+}
+
+.za-service::before {
+  content: "\ea3b";
+}
+
+.za-setting::before {
+  content: "\ea3c";
+}
+
+.za-shop::before {
+  content: "\ea3d";
+}
+
+.za-star-fish::before {
+  content: "\ea3e";
+}
+
+.za-tech::before {
+  content: "\ea3f";
+}
+
+.za-tel::before {
+  content: "\ea40";
+}
+
+.za-tel-fill::before {
+  content: "\ea41";
+}
+
+.za-up::before {
+  content: "\ea42";
+}
+
+.za-user::before {
+  content: "\ea43";
+}
+
+.za-vf::before {
+  content: "\ea44";
+}
+
+.za-wechat-fill::before {
+  content: "\ea45";
+}
+

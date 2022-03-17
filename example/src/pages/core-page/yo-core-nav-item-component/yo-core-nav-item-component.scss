@@ -1,0 +1,10 @@
+@import "~ceaser-easing";
+.yo-core-nav-item-children{
+  transition: all .3s $easeOutExpo;
+}
+.yo-core-nav-item-fade-enter{
+  opacity:0;
+}
+.yo-core-nav-item-fade-leave-to{
+  opacity: 0;
+}

@@ -18,9 +18,9 @@
     ],
     "strictPropertyInitialization": false,
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["example/src/*"],
+      "@env": ["example/src/envs/config.ts"],
+      "@voyo/yo-cm": ["src/index.ts"]
     },
     "lib": [
       "esnext",

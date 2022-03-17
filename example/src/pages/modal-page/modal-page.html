@@ -1,0 +1,102 @@
+<div>
+  <h1>Modal</h1>
+  <itd-example :code="code1" :h="h1">
+    <template #example>
+      <yo-modal :show.sync="modalShow" title="标题一">
+        modal弹框内容
+      </yo-modal>
+      <div class="voyo-area-content text-center">
+        <voyoc-btn @click="modalToggle" type="candy">打开/关闭Modal</voyoc-btn>
+      </div>
+    </template>
+    <template #footer>
+      通过 <code>:show.sync</code> 完成Modal显示的双向绑定。<code>:show.sync</code>是必须的。
+    </template>
+  </itd-example>
+  
+  <itd-example :code="code2" :h="h2" title="多特性">
+    <template #example>
+      <yo-modal :show.sync="modalShow1" title="标题一" size="small">
+        Modal1 内容
+      </yo-modal>
+      <yo-modal :show.sync="modalShow2" title="标题一" size="small">
+        Modal2 内容
+      </yo-modal>
+      <div class="voyo-area-content text-center">
+        <voyoc-btn @click="modalToggle1" type="candy">打开Modal 1</voyoc-btn>
+        <voyoc-btn @click="modalToggle2" type="candy" color="primary2">打开Modal 2</voyoc-btn>
+      </div>
+    </template>
+    <template #footer>
+      <md>
+        Modal支持的特性
+        - 可以并列多个
+        - 可以拖动窗口
+        - 多个`Modal`之间可以互相切换
+      </md>
+    </template>
+  </itd-example>
+  
+  <itd-example title="孤独的Modal" :h="h3" :code="code3">
+    <template #example>
+      <yo-modal :show.sync="modalShow3" title="孤独的表单" :loneliness="true">
+        <yo-group>
+          <yo-cell v-for="(i,index) in list" :key="index">
+            <voyoc-input :placeholder="'xx'+index" type="md"/>
+          </yo-cell>
+          <yo-cell label="选择食物">
+            <el-select v-model="selectVal" placeholder="请选择">
+              <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+              </el-option>
+            </el-select>
+          </yo-cell>
+        </yo-group>
+        <div style="height:600px;padding:1rem">
+       
+        </div>
+        <template #footer>
+          <voyoc-btn @click="confirm" type="pure">保存</voyoc-btn>
+          <voyoc-btn @click="cancel" color="gentle" type="pure">取消</voyoc-btn>
+        </template>
+      </yo-modal>
+      <div class="voyo-area-content text-center">
+        <voyoc-btn @click="modalToggle3" type="candy" color="gentle">打开modal 3</voyoc-btn>
+      </div>
+    </template>
+    <template #footer>
+      设置<code>loneliness</code>为true，使用独立的Modal（不能拖拽，不能与其他modal切换）
+    </template>
+  </itd-example>
+  
+  <md>
+    Props 属性 
+    ===
+    |属性名|类型|介绍|
+    |-|-|-|
+    |show|boolean|控制显示|
+    |autoClose|boolean|出现关闭按钮。默认:true|
+    |bgClose|boolean|`loneliness`模式下，点击背景可关闭。默认:false|
+    |title|string|title显示字段|
+    |size|`small/now/large`|modal的大小。默认:now|
+    |contentCenter|boolean|显示内容是否居中|
+    
+    
+    Event 事件
+    ===
+    |事件名|event类型|介绍|
+    |-|-|-|
+    |update:show|boolean|打开关闭时发送此事件|
+    
+    Method 方法
+    ===
+    |方法名|介绍|
+    |-|-|
+    |open()|打开modal|
+    |closeByControl()|关闭modal|
+  </md>
+  
+</div>

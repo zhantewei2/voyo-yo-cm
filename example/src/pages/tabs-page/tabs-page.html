@@ -1,0 +1,29 @@
+<div>
+    <h1>Tabs</h1>
+    <div class="itd-content">
+      Tabs提供 显示区域的动画切换，不会固定子区域高度。
+      可以借此完成非手势切换的旋转组件，或页面过渡效果。
+    </div>
+    <itd-example :code="code1" :h="h1">
+      <template #example>
+        <div class="voyo-li flex-v-mid">
+          <span class="mr-4">点击按钮 切换tab</span>
+          <voyoc-btn-icon type="candy" size="mini" @click="select(0)">1</voyoc-btn-icon>
+          <voyoc-btn-icon type="candy" size="mini" @click="select(1)">2</voyoc-btn-icon>
+          <voyoc-btn-icon type="candy" size="mini" @click="select(2)">3</voyoc-btn-icon>
+        </div>
+        <yo-tabs v-model="tabIndex">
+          <div v-yo-tab class="flex-center voyo-card">Tab1</div>
+          <div v-yo-tab class="flex-center voyo-card">Tab2</div>
+          <div v-yo-tab class="flex-center voyo-card">Tab3</div>
+        </yo-tabs>
+      </template>
+      
+      <template #footer>
+        <md>
+         `yo-tabs` 下标注`v-yo-tab`的根元素，即为`yo-tabs`的子tab。
+          > 子tab 在激活前，不会显示，VNode也不会被实例化。 如果子tab 为一个`component`，tabs切换过后，将自动对component进行缓存。
+        </md>
+      </template>
+    </itd-example>
+</div>

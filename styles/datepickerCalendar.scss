@@ -91,7 +91,7 @@
           height: $h;
           line-height: $h;
           $after-h: $h*0.8;
-          $radius: $h/2;
+          $radius: math.div($h,2);
           &.__selected-start{
             border-radius: $radius 0 0 $radius;
           }

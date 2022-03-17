@@ -1,6 +1,6 @@
 import Vue, { CreateElement, VNode } from "vue";
 import { FormGroup } from "./form-group";
-import { resolveClass } from "@/util";
+import { resolveClass } from "../util";
 import { filterIncludeObj } from "@ztwx/utils/lib";
 import { ExcuteAfterConnected } from "@ztwx/utils/lib/web";
 import { Prop, Watch, Emit ,Component} from "vue-property-decorator";

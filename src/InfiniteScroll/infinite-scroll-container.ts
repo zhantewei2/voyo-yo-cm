@@ -6,7 +6,7 @@ import { MoveAction, MoveType, PositionRequestFrame } from "./infinite.type";
 import { QueueRun } from "@ztwx/utils";
 import { map, distinctUntilChanged } from "rxjs/operators";
 import InfiniteScrollItem from "./infinite-scroll-item";
-import { prepatchInsert } from "@/util";
+import { prepatchInsert } from "../util";
 
 @Component({
   render(this: InfiniteScrollContainer, h) {

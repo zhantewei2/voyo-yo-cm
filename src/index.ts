@@ -6,5 +6,8 @@ export * from "./animateUtils";
 export * from "./FormGroup";
 export * from "./patchLoading/patchLoading";
 export * from "./i18n/i18n";
-export * from "./DatePickerScroll"
+export * from "./DatePickerScroll";
+export * from "./utils/date";
+//
 export {createForm,FormGroup,UpdateFormGroup} from "./FormGroup";
+

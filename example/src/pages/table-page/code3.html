@@ -1,0 +1,37 @@
+<template>
+  <yo-table :data="data" :columns="columns2"></yo-table>
+</template>
+<script lang="jsx">
+export default {
+  data() {
+    return {
+      columns2:[],
+      data : [
+        { name: "张三", age: 28 },
+        { name: "李四", age: 18 },
+      ]
+    }
+  },
+  created() {
+    this.columns2 = [
+      { label: "姓名", prop: "name" },
+      { label: "年龄", prop: "age" },
+      {
+        label: "操作",
+        template: (h,{row}) => {
+          return (
+            <div>
+              <voyoc-btn onclick={()=>this.edit(row)} size="mini" type="pure">
+                编辑 
+              </voyoc-btn>
+              <voyoc-btn onclick={()=>this.del(row)} size="mini" type="pure" color="error">
+                删除{row.name}
+              </voyoc-btn>
+            </div>
+          );
+        },
+      },
+    ];
+  }
+}
+</script>

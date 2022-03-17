@@ -69,32 +69,36 @@ export class PreInstallControllerData {
 
 export const preInstallControllerData = new PreInstallControllerData();
 
-preInstallControllerData.registryResult((yoForm, value) => {
-  yoForm.forEach(i => {
-    if (i.tag === "el-input") {
-      if (i.props && i.props.type === "number") {
-        const v: any = value[i.id];
-        (value as any)[i.id] = v !== undefined && v !== null?
-          v===""?undefined: Number(v) :
-          v;
+export const yoPreHandleForm=()=>{
+  preInstallControllerData.registryResult((yoForm, value) => {
+    yoForm.forEach(i => {
+      if(!value)return;
+      if(!value.hasOwnProperty(i.id))return;
+      if (i.tag === "el-input") {
+        if (i.props && i.props.type === "number") {
+          const v: any = value[i.id];
+          (value as any)[i.id] = (v==null) ?null: v===""?null:Number(v);
+        }
       }
-    }
+    });
+    return value;
   });
-  return value;
-});
-preInstallControllerData.registry((tagName, data) => {
-  if (tagName === "el-input") {
-    data.props = data.props || {};
-    data.props.clearable = true;
-  }
-  return data;
-});
+  preInstallControllerData.registry((tagName, data) => {
+    if (tagName === "el-input") {
+      data.props = data.props || {};
+      data.props.clearable = true;
+    }
+    return data;
+  });
 
-preInstallControllerData.registryInputVal((controller, val) => {
-  if (controller.props && controller.props.type === "number") {
-    return val !== undefined && val !== null ? 
-      val===""? (undefined as any) : Number(val) :
-      val;
-  }
-  return val;
-});
+  preInstallControllerData.registryInputVal((controller, val) => {
+    if (controller.props && controller.props.type === "number") {
+      return val !== undefined && val !== null ?
+        val===""? (undefined as any) : Number(val) :
+        val;
+    }
+    return val;
+  });
+}
+
+

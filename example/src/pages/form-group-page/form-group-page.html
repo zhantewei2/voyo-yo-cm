@@ -1,0 +1,125 @@
+<div>
+    <h1>Form Group</h1>
+    <itd-example :code="code1" :h="h1" title="简单例子">
+
+        <template #example>
+          <div>
+            <yo-form-group :form="form"></yo-form-group>
+          </div>
+        </template>
+      <template #footer>
+        <md>
+          form 数据中，`tag`可以是任意 组件标签。但该组件**必须支持**`v-model`,**必须支持**`v-model`。
+        </md>
+      </template>
+    </itd-example>
+
+    <itd-example :code="code2" :h="h2" title="表单校验">
+      <template #example>
+        <yo-form-group :form="form2" ref="yoFormGroup"></yo-form-group>
+
+        <div class="voyo-area-content text-center">
+          <el-button @click="confirm" type="primary">confirm</el-button>
+          <el-button @click="reset">reset</el-button>
+        </div>
+      </template>
+
+      <template #footer>
+        <md>
+          - form 数据中,`required` 为预设表单校验方法，校验不为空情况
+          - `props` 内的属性值，相当于直接给组件穿参
+        </md>
+
+      </template>
+    </itd-example>
+
+    <itd-example :code="code3" :h="h3" title="动态修改校验规则">
+      <template #des>
+        动态切换required 和 高级校验
+      </template>
+      <template #example>
+        <self-cc3 />
+      </template>
+    </itd-example>
+
+  <itd-example :code="code4" :h="h4" title="Render用法">
+    <template #des>
+      你可以使用render来获取更高自由度
+    </template>
+    <template #example>
+      <self-cc4 />
+    </template>
+  </itd-example>
+
+  <itd-example :code="code5" :h="h5" title="表单更新">
+    <template #des>
+      使用originValue 完成表单更新
+    </template>
+    <template #example>
+      <self-cc5 />
+    </template>
+  </itd-example>
+<!--  <yo-select :options="list"></yo-select>-->
+
+  <md>
+    Props 属性
+    ===
+
+    |属性|类型|介绍|
+    |-|-|-|
+    |grid|number|指定每行的column数，不设置时为自动响应|
+    |form| `YoFormController`[]|表单数据|
+    |formDisabled|boolean|全局表单禁用，优先级低于单项的disabled|
+    |originValue|Record|表单初始值，更新时使用|
+
+    Event 事件
+    ===
+    |属性|类型|介绍|
+    |-|-|-|
+    |formChange|Record|表单值变化时触发|
+    |hasChanged|boolean|表单值是否发生改变|
+
+
+    Method 方法
+    ===
+    |属性|类型|介绍|
+    |-|-|-|
+    |getValue|Record|获取表单值|
+    |getUpdateValue|Record|获取表单更新值 与**originValue**比较|
+    |checkError|Promise{string}|对表单进行校验，并返回错误信息|
+    |reset|void|重置表单|
+
+
+    API
+    ===
+
+    YoFormController
+    ---
+
+    |属性|类型|介绍|
+    |-|-|-|
+    |tag|string|组件标签名|
+    |id| string|表单中的key|
+    |label|string|label|
+    |value?| ControllerVal| 初始值|
+    |validators?| Validator[]| 表单校验器集|
+    |span?| number|cell占据column数，默认1|
+    |star?| boolean| star 红色*|
+    |props?|`{[key: string]: any }`|对应组件的props|
+    |attrs?|`{[key:string]:any}`|对应组件的attrs|
+    |required?|boolean|预设requiredValidator 校验|
+    |error?| string|表单错误信息|
+    |disablePreInstall?| boolean| 禁用全局处理 tag|
+    |valueChange? |`{immediate?:boolean;handle:Function}`| 监听值变化|
+    |disabled?|boolean |禁用当前controller|
+    |on?|{ [key: string]:Function }|对应组件的 on|
+    |shadow?| boolean| 不显示于ui|
+
+    全局处理器
+    ===
+    对表单传参数、输入、结果、进行全局处理管控
+  </md>
+
+  <div v-html="hEnd" v-once>
+  </div>
+</div>

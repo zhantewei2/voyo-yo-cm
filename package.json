@@ -1,6 +1,6 @@
 {
   "name": "@voyo/yo-cm",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "",
   "main": "dist/main.js",
   "module": "dist/main.js",
@@ -9,17 +9,19 @@
     "build": "webpack --config src/webpack.yo.js",
     "build:declare": "webpack --config src/webpack.yo.js --env declare=1",
     "package": "npm run build:declare & npm run build",
-    "example:dev": "webpack server --config example/example-webpack.config.js --env env=development",
-    "example:build": "webpack --config example/example-webpack.config.js --env env=production"
+    "example:dev": "webpack server --config example/example-webpack.config.js --env env=development config=dev",
+    "example:build": "webpack --config example/example-webpack.config.js --env env=production config=prod"
   },
   "sideEffects": [
-    "**/*.scss",
-    "**/*.css"
+    "**/*.css",
+    "**/*.scss"
   ],
   "author": "",
   "dependencies": {
     "@voyo/core": "^1.0.0",
     "@voyo/core-style": "^2.0.0",
+    "@voyo/http": "^3.5.2",
+    "@ztwx/auto-template": "^0.1.2",
     "@ztwx/form": "^2.1.3",
     "@ztwx/utils": "^1.9.1",
     "marked": "^2.1.2",
@@ -37,13 +39,18 @@
     "@vue/babel-preset-jsx": "^1.2.4",
     "@webpack-cli/serve": "^1.6.1",
     "ceaser-easing": "^1.0.1",
+    "copy-webpack-plugin": "^10.2.4",
     "core-js": "^3.15.2",
+    "element-ui": "^2.15.6",
+    "highlight.js": "^11.0.1",
+    "marked": "^2.1.2",
     "postcss-preset-env": "^7.4.2",
+    "raw-loader": "^4.0.2",
     "resolve-url-loader": "^4.0.0",
     "style-loader": "^3.3.1",
     "tslib": "^2.3.0",
     "webpack": "^5.41.1",
-    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2"
   }
 }

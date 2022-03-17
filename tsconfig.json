@@ -21,7 +21,8 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@voyo/yo-cm": ["src/index.ts"]
     },
     "lib": [
       "esnext",

@@ -1,0 +1,46 @@
+<div>
+  <h1>Group</h1>
+  <div class="itd-content">
+    表单布局，observe group宽度，自动控制布局格
+  </div>
+  <itd-example :code="code1" :h="h1">
+    <template #example>
+      <yo-group >
+        <yo-cell label="label1">
+          <voyoc-input type="md"/>
+        </yo-cell>
+        <yo-cell label="label2">
+          <voyoc-input type="md"/>
+        </yo-cell>
+        <yo-cell label="label3">
+          <voyoc-input type="md"/>
+        </yo-cell>
+        <yo-cell label="label4" important="true">
+          <voyoc-input type="md"/>
+        </yo-cell>
+        <yo-cell label="label5" :span="2">
+          <voyoc-input type="md"/>
+        </yo-cell>
+      </yo-group>
+    </template>
+  </itd-example>
+  
+  <md>
+    Props 属性
+    ===
+    ### yo-group
+    |属性|类型|介绍|
+    |-|-|-|
+    |grid|number|指定每行的column数，不设置时为自动响应|
+    
+    ### yo-cell
+    |属性|类型|介绍|
+    |-|-|-|
+    |label|string|label值|
+    |span|number|当前cell占据的column数，默认为1|
+    |important|boolean|是否标记`*`号|
+    |color|Colors|指定label字体颜色`warn/error`等|
+
+  </md>
+  
+</div>

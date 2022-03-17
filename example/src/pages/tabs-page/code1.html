@@ -1,0 +1,11 @@
+<div class="voyo-li flex-v-mid">
+  <span class="mr-4">点击按钮 切换tab</span>
+  <voyoc-btn-icon type="candy" size="mini" @click="select(0)">1</voyoc-btn-icon>
+  <voyoc-btn-icon type="candy" size="mini" @click="select(1)">2</voyoc-btn-icon>
+  <voyoc-btn-icon type="candy" size="mini" @click="select(2)">3</voyoc-btn-icon>
+</div>
+<yo-tabs v-model="tabIndex">
+  <div v-yo-tab class="flex-center voyo-card">Tab1</div>
+  <div v-yo-tab class="flex-center voyo-card">Tab2</div>
+  <div v-yo-tab class="flex-center voyo-card">Tab3</div>
+</yo-tabs>

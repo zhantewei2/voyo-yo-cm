@@ -1,0 +1,10 @@
+<yo-modal :show.sync="modalShow1" title="标题一" size="small">
+  Modal1 内容
+</yo-modal>
+<yo-modal :show.sync="modalShow2" title="标题一" size="small">
+  Modal2 内容
+</yo-modal>
+<div class="voyo-area-content text-center">
+  <voyoc-btn @click="modalToggle1" type="candy">打开Modal 1</voyoc-btn>
+  <voyoc-btn @click="modalToggle2" type="candy" color="primary2">打开Modal 2</voyoc-btn>
+</div>

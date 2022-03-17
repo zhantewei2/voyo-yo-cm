@@ -1,0 +1,70 @@
+<div>
+  <md>
+    Tooltip
+    ===
+  </md>
+  
+  <itd-example title="Directive" :h="h1" :code="code1">
+    <template #example>
+      <div class="flex-v-between voyo-area-content w-50">
+        <span class="voyo-badge __badge-color-warn" v-yo-tooltip="'content'">
+          top
+        </span>
+        <span class="voyo-badge __badge-color-success" v-yo-tooltip.left="'content'">
+          left
+        </span>
+          <span class="voyo-badge __badge-color-primary" v-yo-tooltip.right="'content'">
+          right
+        </span>
+        <span class="voyo-badge __badge-color-secondary" v-yo-tooltip.bottom="'content'">
+          bottom
+        </span>
+      </div>
+    </template>
+    <template #footer>
+      使用<code>v-yo-tooltip</code>指令，接受一个文本内容。
+    </template>
+  </itd-example>
+  
+  <itd-example title="Component" :h="h2" :code="code2">
+    <template #example>
+      <div class="flex-v-between voyo-area-content w-50">
+        <yo-tooltip position="top">
+          <span class="voyo-badge __badge-color-primary" slot="bind">Top</span>
+          <div>
+            <img :src="logo" class="voyo-image-icon __strong">
+          </div>
+        </yo-tooltip>
+      </div>
+    </template>
+    <template #footer>
+      使用<code>yo-tooltip</code>组件，可以嵌入template
+    </template>
+  </itd-example>
+  
+  <itd-example title="通过点击触发" :h="h3" :code="code3">
+    <template #des>
+      更改触发方式
+    </template>
+    <template #example>
+      <div class="flex-v-between voyo-area-content w-50">
+        <yo-tooltip position="top" trigger="tap" :value="test" v-model="show">
+          <voyoc-btn type="candy"  slot="bind">点击</voyoc-btn>
+          <div class="flex-center">
+            <img :src="logo" class="voyo-image-icon __strong">
+          </div>
+          <voyoc-btn @click="close" round block>关闭</voyoc-btn>
+        </yo-tooltip>
+        <div>
+          当前状态: {{show}}
+        </div>
+      </div>
+    </template>
+    <template #footer>
+      <md>
+      `tap`：点击外部区域时会自动关闭弹出层。同时，通过`v-model`完成内部按钮的点击关闭。
+      </md>
+    </template>
+  </itd-example>
+  
+</div>

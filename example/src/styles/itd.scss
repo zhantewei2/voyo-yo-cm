@@ -1,0 +1,79 @@
+@use "~@voyo/yo-cm-tmp/styles/yo" as core;
+.itd-card{
+  background: var(--color-bg);
+  border:1px solid var(--color-after-border);
+  @include core.Radius();
+  padding:1rem 0 0 0;
+  &>header{
+    padding:0 1rem 1rem 1rem;
+    @include core.text-title(strong);
+    //border-bottom:1px solid var(--color-after-border);
+    font-weight: bold;
+  }
+  &>main{
+    padding:0 1rem 1rem 1rem;
+  }
+  &>footer{
+    padding:1.5rem 1rem;
+    background:var(--color-bg3);
+    @include core.text-content(mini);
+  }
+  margin-bottom:2rem;
+  //box-shadow:1px 4px 12px -2px rgba(black,.1);
+}
+
+code{
+  background: core.$yo-md-code-bg-color;
+  padding:0.2rem .5rem;
+  margin:0 .5rem;
+  color:var(--color-primary);
+  font-weight: bold;
+  @include core.Radius();
+}
+
+pre{
+  &>code{
+    background:transparent !important;
+    color: var(--color-font-des);
+  }
+}
+.yo-markdown{
+  pre{
+    background:var(--color-bg3);
+    padding:1rem;
+    @include core.Radius();
+  }
+}
+
+.itd-example{
+  padding:1rem;
+}
+h1{
+  border-bottom: 1px solid var(--color-after-border);
+  padding:2.5rem 0 1.5rem 0;
+  margin:0 0 1rem 0;
+  font-size:1.7rem;
+}
+.itd-header,h3{
+  margin:0;
+  padding: 2rem 0 1.2rem 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--color-font-title);
+}
+.itd-des{
+  color:var(--color-font-content);
+  font-size: 1rem;
+  padding: 1rem 0;
+}
+.itd-content{
+  margin-bottom:3rem;
+}
+a[href],a.href{
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+voyoc-input{
+  width: 100%;
+}

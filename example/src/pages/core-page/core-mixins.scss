@@ -1,0 +1,12 @@
+@use "~@voyo/yo-cm-tmp/styles/vars" as *;
+
+@mixin MediaLteSmall(){
+  @media screen and (max-width: 1140px){
+    @content;
+  }
+}
+@mixin MediaMobile(){
+  @media #{$media-mobile}{
+    @content;
+  }
+}

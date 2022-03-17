@@ -1,0 +1,66 @@
+<div>
+  <md>
+    Tabbar
+    ===
+  </md>
+  <itd-example title="样例一" :code="code1" :h="h1">
+    <template #example>
+      <h3>Example</h3>
+      <yo-tabbar>
+        <yo-tabbar-item>选项一</yo-tabbar-item>
+        <yo-tabbar-item>选项二</yo-tabbar-item>
+        <yo-tabbar-item>选项三</yo-tabbar-item>
+      </yo-tabbar>
+      <yo-tabbar color="warn">
+        <yo-tabbar-item>选项一</yo-tabbar-item>
+        <yo-tabbar-item>选项二</yo-tabbar-item>
+        <yo-tabbar-item>选项三</yo-tabbar-item>
+      </yo-tabbar>
+    </template>
+  </itd-example>
+  
+  
+  <itd-example title="样例二" :code="code2" :h="h2">
+    <template #example>
+      <yo-tabbar v-model="index2">
+        <yo-tabbar-item>选项一</yo-tabbar-item>
+        <yo-tabbar-item>选项二</yo-tabbar-item>
+        <yo-tabbar-item>选项三三三三</yo-tabbar-item>
+        <yo-tabbar-item>选项四四四四四</yo-tabbar-item>
+        <yo-tabbar-item>选项五五五五五五</yo-tabbar-item>
+        <yo-tabbar-item>选项六六六六六六六</yo-tabbar-item>
+        <yo-tabbar-item>选项七七七七七七七七</yo-tabbar-item>
+        <yo-tabbar-item>选项八八八八八八八八八</yo-tabbar-item>
+      </yo-tabbar>
+    </template>
+    <div slot="footer">
+      <code>tabbar-item</code>集合，超出位置，可触控滑动
+    </div>
+  </itd-example>
+  
+  <md>
+  Props 属性
+  ===
+  ### yo-tabbar
+  |属性名|类型|介绍|
+  |-|-|-|
+  |value|number|控制当前选择的`tabbar-item`|
+  |color|`primary/primary2/secondary/warn/error/gentle/success`|设置颜色|
+  > value值为`yo-tabbar`内`yo-tabbar-item`的index排列顺序
+    
+  ### yo-tabbar-item
+  |属性名|类型|介绍|
+  |-|-|-|
+  |ripple|boolean|是否打开点击波纹特效,默认true|
+
+  Event 事件
+  ===
+  
+  ### yo-tabbar
+  |属性名|event类型|介绍|
+  |-|-|-|
+  |input|number|选择`tabbar-item`时触发|
+  
+  </md>
+  
+</div>

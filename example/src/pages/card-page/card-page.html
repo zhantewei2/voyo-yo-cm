@@ -1,0 +1,42 @@
+<div>
+  <h1>Card</h1>
+  <itd-example title="样例" :code="code1" :h="h1">
+    <template #example>
+      <yo-card title="插入信息">
+        <div class="yo-cell">
+          <span class="_cell-label">内容</span>
+          <span class="_cell-value">
+            <voyoc-input type="candy" placeholder="输入内容"></voyoc-input>
+          </span>
+        </div>
+        <template #footer>
+          <voyoc-btn>提交</voyoc-btn>
+          <voyoc-btn type="outline">撤回</voyoc-btn>
+        </template>
+      </yo-card>
+    </template>
+    <template #footer>
+      <md>
+        统一的展示模版，便于合理规划调整项目样式。
+      </md>
+    </template>
+  </itd-example>
+  
+  <md>
+    Props 属性
+    ===
+    
+    |属性名|类型|介绍|
+    |-|-|-|
+    |title|string|设置card title栏的值|
+
+    Slots 插槽
+    ===
+    
+    |插槽名|介绍|
+    |-|-|
+    |default|默认|
+    |title|设置了`slot title`，将不显示`props title`|
+    |footer|底部插槽 `setting.card.footerAlign`可全局控制对齐方案|
+  </md>
+</div>

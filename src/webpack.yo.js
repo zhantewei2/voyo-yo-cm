@@ -45,7 +45,7 @@ module.exports = ({ env, declare }) => {
         'rxjs/operators':'rxjs/operators',
         vue: "vue",
         "vue-property-decorator": "vue-property-decorator",
-        marked: "module marked",
+        marked: "marked",
         "element-ui":"element-ui",
         "@ztwx/utils": "@ztwx/utils",
         "@ztwx/utils/lib/url":"@ztwx/utils/lib/url",

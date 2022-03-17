@@ -1,0 +1,21 @@
+@use "../../../styles/base" as *;
+
+.list-ul{
+  border-right:5px solid var(--color-primary-light);
+  padding:0;
+}
+.list-li{
+  position: relative;
+  list-style: none;
+  text-align: right;
+  padding: .5rem 2rem .5rem .5rem;
+  color: var(--color-font-des);
+  @include Transition(background);
+  cursor: pointer;
+  &:hover{
+    background: var(--color-bg3);
+  }
+  &.__active{
+    color: var(--color-primary);
+  }
+}

@@ -1,0 +1,31 @@
+<template>
+  <div>
+    <yo-form-group ref="yoFormGroup" :form="form"></yo-form-group>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+        form:[
+          {
+            label :"姓名",
+            id: "name",
+            tag: "el-input",
+          },
+          {
+            label: "年龄",
+            id: "age",
+            tag: "el-input",
+            props:{
+              type:"number",
+            }
+          }
+        ]
+    }
+  },
+}
+
+</script>
+

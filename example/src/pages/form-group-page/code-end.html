@@ -1,0 +1,10 @@
+import {preInstallControllerData} from "@voyo/yo-cm";
+
+preInstallControllerData.registry((tagName,data)=>{
+  //为所有el-input 默认添加clearable:true;
+  if(tagName==="el-input") (data.props=data.props||{}).clearable=true;
+})
+
+preInstallControllerData.registryInputVal(fn); //全局处理 输入值
+
+preInstallControllerData.registryResult(fn); //全局处理 获取值

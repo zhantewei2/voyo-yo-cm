@@ -1,2 +1,1 @@
-
-const abc:string="AA";
+export const a=1;

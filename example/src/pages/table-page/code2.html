@@ -1,0 +1,22 @@
+<<template>
+  <yo-table :data="data" :columns="columns">
+    <el-table-column prop="city" label="城市" />
+  </yo-table>
+</template>
+
+<script lang="js">
+  export default {
+    data() {
+      return {
+        columns: [
+          { label: "姓名", prop: "name" },
+          { label: "年龄", prop: "age" },
+        ],
+        data :[
+          { name: "张三", age: 28, city: "上海" },
+          { name: "李四", age: 18, city: "成都" },
+        ]
+      }
+    },
+  }
+</script>

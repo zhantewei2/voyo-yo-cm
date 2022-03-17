@@ -6,10 +6,10 @@ import {
   YoFormController,
   ControllerVal
 } from "./form.types";
-import { preInstallControllerData, PreInstallControllerData } from "./form";
-import {filterIncludeObj} from "@ztwx/utils";
-import {proxyObj} from "@/util";
-import {concatMapTo} from "rxjs/operators";
+import { preInstallControllerData } from "./form";
+import {QueueRun} from "@ztwx/utils";
+import {proxyObj} from "../util";
+
 
 
 export const errorMsg = (
@@ -29,6 +29,7 @@ export const errorMsg = (
 
 @Component({
   render(this: FormGroup, h: CreateElement) {
+
     return h(
       "yo-group",
       {
@@ -58,6 +59,7 @@ export const errorMsg = (
                       props: {
                         disabled: controller.disabled??this.formDisabled,
                         ...(controller.props || {}),
+                        clearable: true,
                         value: this.valueForm.value[controller.id],
                       },
                       attrs: {
@@ -75,9 +77,9 @@ export const errorMsg = (
                           ] = val;
                           if(controller.on&&controller.on.input)controller.on.input.call(val,this.valueForm);
                         },
-                        
+
                         ...(controller.on?this.patchListeners(controller.on,["input"]):{})
-                        
+
                       },
                     },
                     controller.disablePreInstall,
@@ -98,20 +100,23 @@ export class FormGroup extends Vue {
   @Prop({}) grid: number;
   @Prop({ default: true }) controllerError: boolean; // 表单错误时，显示controller错误信息
   @Prop({default:false})formDisabled:boolean;
+  @Prop({default:false})dynamicErrorWatch:boolean;
+  @Prop({})originValue:any;
+
+
   @Watch("form", { immediate: true })
   watchForm(controllers: YoFormController[]) {
     if (!controllers || controllers==this.controllers) return;
-    
+
     this.valueForm = new Form(
       controllers.map(controller => {
-        const validators=controller.validators ||[];
-        this.requireValidator(controller,controller.required);
         return {
           id: controller.id,
           value: controller.value,
-          validator: validators
+          validator: this.requireValidator(controller,controller.required),
         }}),
     );
+
     this.controllers=controllers;
     this.controllers.forEach(controller=>this.watchController(controller));
     this.valueForm.valueChange.subscribe(v=>this.formChange(v));
@@ -119,10 +124,19 @@ export class FormGroup extends Vue {
   @Watch("valueForm._isChanged") watchValueFormChanged(changed: boolean) {
     this.hasChanged(changed);
   }
-  
+
+  @Watch("originValue",{immediate:true})watchOriginValue(v:any){
+    this.queueAfterMounted.awaitPromise()
+      .then(()=>{
+        if(!v)return;
+        this.setOrigin(v);
+        this.reset();
+        this.valueForm.isChanged;
+      })
+  }
   @Emit("hasChanged") hasChanged(v: boolean) {}
   @Emit("formChange")formChange(v:any){}
-  preControllers:any;
+  queueAfterMounted =new QueueRun<null,void>();
   valueForm: Form = new Form([]);
   controllers: YoFormController[] = [];
   // 获得form值
@@ -136,6 +150,7 @@ export class FormGroup extends Vue {
     @return null 时
    */
   async checkError(): Promise<string[] | void> {
+
     const errors = await this.valueForm.catchValidatorsErr();
 
     this.valueForm.controllers.forEach(item => {
@@ -146,6 +161,7 @@ export class FormGroup extends Vue {
       controller.error =
         item.errors && item.errors.length ? item.errors[0] : "";
     });
+
     return errors;
   }
   reset() {
@@ -153,12 +169,15 @@ export class FormGroup extends Vue {
     this.controllers.forEach(i => (i.error = ""));
   }
   getUpdateValue() {
-    return this.valueForm.getUpdatedValue();
+    return  preInstallControllerData.handleResult(
+      this.controllers,
+      this.valueForm.getUpdatedValue() as any
+    );
   }
   setOrigin(v: Record<string, any>) {
     this.valueForm.setOriginValue(v);
   }
-  
+
   patchListeners<T extends {[k:string]:(...args:any[])=>void},K extends keyof T>(
     listeners:{[P in keyof T]:T[P]},
     excludes:  K[]
@@ -175,10 +194,12 @@ export class FormGroup extends Vue {
   }
   watchController(controller:YoFormController){
     // Object.defineProperty()
-    
     const self=this;
+    //add error listener
+    if(!controller.error) Vue.set(controller,"error","");
 
     if(controller.valueChangeOrder)controller.valueChangeOrder.unsubscribe();
+
     const change:any=controller.valueChange;
     controller.valueChangeOrder=self.valueForm.controllerDict[controller.id].valueChange.subscribe((controllerItem:ControllerItem)=>{
       controller.value=controllerItem.value;
@@ -188,7 +209,7 @@ export class FormGroup extends Vue {
       }
     })
     if(change&&change.immediate&&change.handle) change.handle(controller.value);
-    
+
     controller._setFn=controller._setFn||{};
     if(!controller._setFn._value){
       proxyObj(controller,"value",{
@@ -215,13 +236,17 @@ export class FormGroup extends Vue {
       self.requireValidator(controller,v);
     }
   }
-  
-  requireValidator(controller:YoFormController,append?:boolean){
-    
+
+  requireValidator(controller:YoFormController,append?:boolean):Validator[]{
+
     controller.validators= controller.validators ||[];
     const existsIndex=controller.validators.findIndex(validate=>validate instanceof requiredValidator);
     if(existsIndex<0&&append) controller.validators.push(new requiredValidator(`${controller.label}不能为空`));
-    if(existsIndex>=0&&!append) controller.validators.splice(existsIndex,1);
+    if(existsIndex>=0&&append===false) controller.validators.splice(existsIndex,1);
+    return controller.validators;
+  }
 
+  mounted(){
+    this.queueAfterMounted.end(null);
   }
 }

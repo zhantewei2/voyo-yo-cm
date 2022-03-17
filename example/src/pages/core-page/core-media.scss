@@ -1,0 +1,32 @@
+@use "~@voyo/yo-cm-tmp/styles/vars" as *;
+@use "core-mixins" as core;
+
+
+@include core.MediaLteSmall(){
+  .yo-core-content-sidebar{
+   display:none
+  }
+  .yo-core-content {
+    width: 100%;
+  }
+}
+
+@include core.MediaMobile(){
+  .yo-core-page{
+    &>.content{
+      margin:1rem 0 0 0;
+    }
+  }
+  .yo-core-content{
+    padding:1rem;
+  }
+
+  .yo-core-page{
+    &>.nav{
+      width:100%;
+    }
+  }
+
+}
+
+

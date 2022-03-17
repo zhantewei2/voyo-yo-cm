@@ -1,0 +1,12 @@
+<yo-tooltip position="top" trigger="tap" :value="test" v-model="show">
+  <voyoc-btn type="candy"  slot="bind">点击</voyoc-btn>
+  
+  <div class="flex-center">
+    <img :src="logo" class="voyo-image-icon __strong">
+  </div>
+  <voyoc-btn @click="close" round block>关闭</voyoc-btn>
+  
+</yo-tooltip>
+<div>
+  当前状态: {{show}}
+</div>

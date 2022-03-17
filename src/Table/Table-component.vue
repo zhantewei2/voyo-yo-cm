@@ -51,7 +51,7 @@ export default class Table extends Vue {
   @Prop({}) columns: TableColumnCustomer[];
   @Prop({}) loading: boolean;
   handleColumnTemplate =
-    (h: CreateElement, column: TableColumn) => (slotArgs: any) => column.template(h, slotArgs);
+    (h: CreateElement, column: any) => (slotArgs: any) => column.template(h, slotArgs);
 }
 </script>
 <style scoped lang="scss"></style>

@@ -1,0 +1,52 @@
+<div>
+    <md>
+      Table
+      ===
+    </md>
+  
+    <itd-example title="样例基础" :code="code1" :h="h1">
+      <template #example>
+        <yo-table :data="data" :columns="columns"></yo-table>
+      </template>
+      <template #footer>
+        column可以通过<code>columns</code>属性直接传入yo-table中
+      </template>
+    </itd-example>
+    <itd-example title="高阶el-table" :code="code2" :h="h2">
+      <template #example>
+        <yo-table :data="data2" :columns="columns">
+          <el-table-column prop="city" label="城市" />
+        </yo-table>
+      </template>
+      <template #footer>
+        <md>
+        `yo-table`是el-table的高阶组件，所以能使用el-table的所有能力
+          
+        你可以不使用`columns`属性，只使用`el-table-column`，或者二者混用
+        
+        [查看Element Table文档](https://element.eleme.cn/#/zh-CN/component/table)
+        </md>
+      </template>
+    </itd-example>
+
+    <itd-example title="指定template" :code="code3" :h="h3">
+      <template #example>
+        <yo-table :data="data" :columns="columns2"></yo-table>
+      </template>
+      <template #footer>
+        <md>
+        columns中写template。
+        `template`方法需要返回一个`VNode`。案例中使用了`jsx`语法糖，请设置 `script lang='jsx'`。
+        当然，你也可以使用CreateElement，直接书写js代码。
+        > 使用`template`函数，请在`created`生命钩子 及之后再数据化columns对象。因为此时你获得`this`的，才为当前组件实例。
+        </md>
+      </template>
+    </itd-example>
+  
+    <itd-example title="loading" :code="code4" :h="h4">
+      <template #example>
+        <yo-table :data="data" :columns="columns" :loading="tableLoading"></yo-table>
+      </template>
+    </itd-example>
+</div>
+

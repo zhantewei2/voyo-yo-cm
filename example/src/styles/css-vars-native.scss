@@ -1,0 +1,15 @@
+html{
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-gentle: #{$color-primary-gentle};
+  --color-primary2: #{$color-primary2};
+  --color-primary2-gentle: #{rgba($color-primary2,.1)};
+  --color-primary2-light: #{lighten($color-primary2,10%)};
+  --color-secondary: #{$color-secondary};
+  --color-error: #{$color-error};
+  --size-font: 1rem;
+  --size-small: 1rem;
+  --font-family: -apple-system,BlinkMacSystemFont,SF UI Text,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif;
+  --color-font-base: #5e6d82;
+  
+}

@@ -16,7 +16,8 @@ const relativeFixed=new RelativeFixed(3,5);
 export const insertBody=(tooltipEl:HTMLElement,bindEl:HTMLElement,position:TooltipPosition)=>{
   document.documentElement.appendChild(tooltipEl);
   const pos=relativeFixed.relativePosition(tooltipEl,bindEl,position);
-  tooltipEl.style.top=pos.top+document.documentElement.scrollTop+"px"
+  tooltipEl.style.top=pos.top+document.documentElement.scrollTop+"px";
+  console.log("--",document.documentElement.scrollTop)
   tooltipEl.style.left=pos.left+"px";
 }
 
@@ -40,13 +41,13 @@ export const createTooltipContainer=({h,children,position="top",bindEl,insertedC
   destroyCb?:()=>void,
   className:string
 }):VNode=>{
-  
+
   const containerVNode=(
     <div class={[className,"__"+position]}>
       {children}
     </div>
   );
-  
+
   // 插入时,更改至body,并计算位置
   defineVNodeHook(containerVNode,{
     insert: (v)=>{
@@ -159,7 +160,7 @@ export const TooltipComponent= {
       }
     });
     bindVNode.children=bindVNode.children||[];
-    
+
     const tagExistIndex=bindVNode.children.findIndex((child:VNode|any)=>child.yoTag);
     if(tagExistIndex<0) {
       this.containerVNode = h(bindTooltipComponent,
@@ -188,7 +189,7 @@ export const TooltipComponent= {
       }
     }
   },
-  
+
   beforeCreate(this:any) {
     this.bindEl=null;
     this.visible=false;
@@ -279,7 +280,7 @@ export const TooltipDirective={
         p&&p.removeChild(tooltipEl);
       }
     });
-    
+
     el.addEventListener("mouseenter",()=>{
       if(!animation.enterRunning&&!animation.leaveRunning){
         el.appendChild(tooltipEl);

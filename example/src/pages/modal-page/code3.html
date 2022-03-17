@@ -1,0 +1,26 @@
+<yo-modal :show.sync="modalShow3" title="孤独的表单" :loneliness="true">
+  <yo-group>
+    <yo-cell v-for="(i,index) in list" :key="index">
+      <voyoc-input :placeholder="'xx'+index" type="md"/>
+    </yo-cell>
+    
+    <yo-cell label="选择食物">
+      <el-select v-model="selectVal" placeholder="请选择">
+        <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+        </el-option>
+      </el-select>
+    </yo-cell>
+    
+  </yo-group>
+  <template #footer>
+    <voyoc-btn @click="confirm" type="pure">保存</voyoc-btn>
+    <voyoc-btn @click="cancel" color="gentle" type="pure">取消</voyoc-btn>
+  </template>
+</yo-modal>
+<div class="voyo-area-content text-center">
+  <voyoc-btn @click="modalToggle3" type="candy" color="gentle">打开modal 3</voyoc-btn>
+</div>

@@ -16,7 +16,7 @@
               <div
                 :class="[
                   i.shadowDay?'__shadow':'',
-                  type==='alone'? 
+                  type==='alone'?
                     selectedAloneDay&&i.y===selectedAloneDay.y&&i.m===selectedAloneDay.m&&i.d===selectedAloneDay.d?'__selected':''
                     :'',
                     startClass(i),
@@ -47,7 +47,7 @@ import {
   getDateDay,
   DateDay,PickerDay,
     isGreater,timeStampDay
-} from "@/utils/date";
+} from "../utils/date";
 
 export interface PickerDate {
   y: number;
@@ -71,12 +71,12 @@ export default class DatePickerScroll extends Vue {
   @Prop({})disableDay:(day:PickerDay)=>void;
   @Emit("selectDay")emitSelectDay(day:PickerDay){}
   @Emit("selectRange")emitSelectRange(range:{start:PickerDay|null,end:PickerDay|null}){};
-  
+
   selectedAloneDay:PickerDay|null=null;
   selectedStartDay:PickerDay|null=null;
   selectedEndDay:PickerDay|null=null;
-  
-  
+
+
   startClass(d:PickerDay):string{
     const isStart=this.type==="range"&&this.selectedStartDay&&d.timestamp===this.selectedStartDay?.timestamp;
     return isStart?`__selected-start ${!this.selectedEndDay?'__selected-range-alone':''}`:"";
@@ -105,11 +105,11 @@ export default class DatePickerScroll extends Vue {
       if(day===this.selectedAloneDay)return;
       this.emitSelectDay(this.selectedAloneDay =day);
     }else if(this.type==="range"){
-      
+
       if(this.selectedEndDay&&day.timestamp===this.selectedEndDay.timestamp){
         this.lastedSelectType=undefined;
         this.selectedEndDay=null;
-        
+
       }else if(this.selectedStartDay && day.timestamp===this.selectedStartDay.timestamp){
         this.lastedSelectType=undefined;
         this.selectedStartDay=null;
@@ -144,7 +144,7 @@ export default class DatePickerScroll extends Vue {
   clean(){
     this.selectedAloneDay= this.selectedStartDay= this.selectedEndDay=null;
   }
-  
+
 }
 </script>
 
