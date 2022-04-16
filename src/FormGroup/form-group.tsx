@@ -29,7 +29,6 @@ export const errorMsg = (
 
 @Component({
   render(this: FormGroup, h: CreateElement) {
-
     return h(
       "yo-group",
       {
@@ -77,8 +76,12 @@ export const errorMsg = (
                           ] = val;
                           if(controller.on&&controller.on.input)controller.on.input.call(val,this.valueForm);
                         },
+                        blur: (el:HTMLElement)=>{
+                          this.checkControllerError(controller);
+                          controller.on?.blur&&controller.on.blur(el);
 
-                        ...(controller.on?this.patchListeners(controller.on,["input"]):{})
+                        },
+                        ...(controller.on?this.patchListeners(controller.on,["input","blur"]):{})
 
                       },
                     },
@@ -102,7 +105,7 @@ export class FormGroup extends Vue {
   @Prop({default:false})formDisabled:boolean;
   @Prop({default:false})dynamicErrorWatch:boolean;
   @Prop({})originValue:any;
-
+  resetting:boolean;
 
   @Watch("form", { immediate: true })
   watchForm(controllers: YoFormController[]) {
@@ -150,9 +153,7 @@ export class FormGroup extends Vue {
     @return null 时
    */
   async checkError(): Promise<string[] | void> {
-
     const errors = await this.valueForm.catchValidatorsErr();
-
     this.valueForm.controllers.forEach(item => {
       const controller: YoFormController = this.controllers.find(
         i => i.id === item.id,
@@ -164,9 +165,21 @@ export class FormGroup extends Vue {
 
     return errors;
   }
+
+  async checkControllerError(controller:YoFormController){
+    if(this.resetting||!this.dynamicErrorWatch)return;
+    const formControllerItem:ControllerItem= this.valueForm.controllerDict[controller.id];
+    if(!formControllerItem)return;
+    await formControllerItem.checkValidator();
+    controller.error= formControllerItem.errors && formControllerItem.errors.length? formControllerItem.errors[0]:"";
+  }
+
   reset() {
+    this.resetting=true;
     this.valueForm.reset();
+    setTimeout(()=>this.resetting=false);
     this.controllers.forEach(i => (i.error = ""));
+
   }
   getUpdateValue() {
     return  preInstallControllerData.handleResult(
@@ -207,6 +220,8 @@ export class FormGroup extends Vue {
         if(change instanceof Function)change(controller.value,self.valueForm);
         if(change.handle)change.handle(controller.value,self.valueForm);
       }
+      // check controller validator
+      this.checkControllerError(controller);
     })
     if(change&&change.immediate&&change.handle) change.handle(controller.value);
 

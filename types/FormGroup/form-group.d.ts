@@ -10,6 +10,7 @@ export declare class FormGroup extends Vue {
     formDisabled: boolean;
     dynamicErrorWatch: boolean;
     originValue: any;
+    resetting: boolean;
     watchForm(controllers: YoFormController[]): void;
     watchValueFormChanged(changed: boolean): void;
     watchOriginValue(v: any): void;
@@ -22,6 +23,7 @@ export declare class FormGroup extends Vue {
         [x: string]: any;
     };
     checkError(): Promise<string[] | void>;
+    checkControllerError(controller: YoFormController): Promise<void>;
     reset(): void;
     getUpdateValue(): {
         [x: string]: any;

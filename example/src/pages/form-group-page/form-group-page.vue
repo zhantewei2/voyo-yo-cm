@@ -75,14 +75,19 @@ export default class extends Vue{
       id: "name",
       tag: "el-input",
       required: true,
+      props:{
+        placeholder:"xx"
+      },
+
     },
     {
       label: "年龄",
       id: "age",
       tag: "el-input",
       props:{
-        type:"number",
-      }
+        type:"number"
+      },
+
     },
     {
       label: "职业",
