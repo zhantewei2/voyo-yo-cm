@@ -58,7 +58,6 @@ export const errorMsg = (
                       props: {
                         disabled: controller.disabled??this.formDisabled,
                         ...(controller.props || {}),
-                        clearable: true,
                         value: this.valueForm.value[controller.id],
                       },
                       attrs: {

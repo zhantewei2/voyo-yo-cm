@@ -81,11 +81,12 @@ export default class extends Vue{
 
     },
     {
-      label: "年龄",
+      label: "年龄2",
       id: "age",
       tag: "el-input",
       props:{
-        type:"number"
+        type:"number",
+        clearable:false,
       },
 
     },
