@@ -1,6 +1,6 @@
 {
   "name": "@voyo/yo-cm",
-  "version": "1.5.2",
+  "version": "1.5.5",
   "description": "",
   "main": "dist/main.js",
   "module": "dist/main.js",
@@ -19,20 +19,20 @@
   "author": "",
   "dependencies": {
     "@voyo/core": "^1.0.0",
+    "marked": "^2.1.2"
+  },
+  "license": "ISC",
+  "devDependencies": {
     "@voyo/core-style": "^2.0.0",
     "@voyo/http": "^3.5.2",
     "@ztwx/auto-template": "^0.1.2",
     "@ztwx/form": "^2.1.3",
     "@ztwx/utils": "^1.9.1",
-    "marked": "^2.1.2",
     "rxjs": "^6.6.7",
     "sass": "^1.35.1",
     "vue": "^2.6.14",
     "vue-property-decorator": "^8.5.1",
-    "vuex": "^3.6.2"
-  },
-  "license": "ISC",
-  "devDependencies": {
+    "vuex": "^3.6.2",
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@types/resize-observer-browser": "^0.1.5",
     "@voyom/core": "0.3.0",
@@ -43,7 +43,6 @@
     "core-js": "^3.15.2",
     "element-ui": "^2.15.6",
     "highlight.js": "^11.0.1",
-    "marked": "^2.1.2",
     "postcss-preset-env": "^7.4.2",
     "raw-loader": "^4.0.2",
     "resolve-url-loader": "^4.0.0",
