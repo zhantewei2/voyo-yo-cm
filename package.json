@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@types/resize-observer-browser": "^0.1.5",
-    "@voyom/core": "github:zhantewei2/voyom-core#vue2",
+    "@voyom/core": "0.3.0",
     "@vue/babel-preset-jsx": "^1.2.4",
     "@webpack-cli/serve": "^1.6.1",
     "ceaser-easing": "^1.0.1",

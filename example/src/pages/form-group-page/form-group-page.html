@@ -16,7 +16,7 @@
 
     <itd-example :code="code2" :h="h2" title="表单校验">
       <template #example>
-        <yo-form-group :form="form2" ref="yoFormGroup"></yo-form-group>
+        <yo-form-group :dynamicErrorWatch="true" :form="form2" ref="yoFormGroup"></yo-form-group>
 
         <div class="voyo-area-content text-center">
           <el-button @click="confirm" type="primary">confirm</el-button>
@@ -71,6 +71,7 @@
     |form| `YoFormController`[]|表单数据|
     |formDisabled|boolean|全局表单禁用，优先级低于单项的disabled|
     |originValue|Record|表单初始值，更新时使用|
+    |dynamicErrorWatch|boolean|（默认false）开启动态校验表单|
 
     Event 事件
     ===

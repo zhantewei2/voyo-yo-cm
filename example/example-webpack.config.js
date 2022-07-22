@@ -124,7 +124,7 @@ module.exports=({env,config})=>{
         path: join("example-dist"),
       },
       plugins:[
-        new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)(),
+        // new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)(),
         new HtmlWebpackPlugin({
           baseUrl,
           minify:false,
