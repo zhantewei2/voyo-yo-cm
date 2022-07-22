@@ -86,7 +86,7 @@ export const yoPreHandleForm=()=>{
   preInstallControllerData.registry((tagName, data) => {
     if (tagName === "el-input") {
       data.props = data.props || {};
-      data.props.clearable??= true;
+      data.props.clearable=data.props.clearable == null? true:data.props.clearable;
     }
     return data;
   });
